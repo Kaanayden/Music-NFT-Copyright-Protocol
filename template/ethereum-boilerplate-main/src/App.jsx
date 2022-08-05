@@ -20,6 +20,7 @@ import QuickStart from "components/QuickStart";
 import Text from "antd/lib/typography/Text";
 
 import MenuItems from "./components/MenuItems";
+import Test from "components/Test";
 const { Header, Footer } = Layout;
 
 const styles = {
@@ -68,7 +69,7 @@ const App = () => {
       <Router>
         <Header style={styles.header}>
           <Logo />
-          
+
           <MenuItems />
           <div style={styles.headerRight}>
             <Chains />
@@ -82,6 +83,11 @@ const App = () => {
             <Route exact path="/quickstart">
               <QuickStart />
             </Route>
+
+            <Route path="/test">
+              <Test />
+            </Route>
+
             <Route path="/">
               <Redirect to="/quickstart" />
             </Route>
