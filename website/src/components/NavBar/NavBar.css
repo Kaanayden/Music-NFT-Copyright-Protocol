@@ -1,0 +1,36 @@
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: rgb(252, 252, 252);
+	position: fixed;
+ 	top: 0;
+  	width: 100%;
+	z-index: 1000;
+    box-shadow: 0 3px 5px 3px rgb(224, 224, 224);
+}
+  
+li.pages {
+    margin-left: 5px;
+	float: left;
+}
+  
+li.pages a {
+    font-size: larger;
+    font-weight: 600;
+	display: block;
+	color: gray;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+    transition: color 0.2s;
+}
+li.pages:hover a{
+    color: black;
+}
+li.wallet{
+    margin-top:10px;
+    margin-right: 10px;
+    float: right;
+}
