@@ -87,17 +87,18 @@ function Chains() {
   const { switchNetwork, chainId, chain } = useChain();
   const { isAuthenticated } = useMoralis();
   const [selected, setSelected] = useState({});
-
-  console.log("chain", chain);
-  console.log("chainId", chainId)
-  console.log("selected", selected);
-
+  const [lastChain, setLastChain] = useState();
 
   useEffect(() => {
+    if (lastChain && !chainId) {
+      window.location.reload(false);
+    }
     if (!chainId) { return null };
     const newSelected = menuItems.find((item) => item.key === chainId);
     setSelected(newSelected);
     console.log("current chainId: ", chainId);
+
+
 
 
   }, [chainId]);
@@ -105,7 +106,8 @@ function Chains() {
   const handleMenuClick = (e) => {
     console.log("switch to: ", e.key);
     switchNetwork(e.key);
-    //window.location.reload(false);
+    setLastChain(selected);
+
   };
 
   const menu = (
