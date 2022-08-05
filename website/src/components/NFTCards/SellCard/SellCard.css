@@ -1,0 +1,29 @@
+.card-outer{
+    overflow: hidden;
+    position: relative;
+    margin: 10px auto;
+   
+    border-radius: 15px;
+    width: 100px;
+    height: 150px;
+    background-color: rgb(71, 94, 94);
+}
+.card-outer:hover{
+    box-shadow: 3px 3px 5px 3px gray;
+}
+
+.sell-button{
+    left: -25%;
+    color: white;
+    font-size: 80%;
+    border: none;
+    background-color: rgb(217, 103, 92);
+    position: absolute;
+    width: 150%;
+    height: 15%;
+    bottom: -16%;
+    transition: bottom 0.4s;
+}
+.card-outer:hover > .sell-button{
+    bottom: -0.05%;
+}

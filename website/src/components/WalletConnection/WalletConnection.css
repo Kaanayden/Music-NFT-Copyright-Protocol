@@ -1,0 +1,88 @@
+.outer{
+
+}
+
+.wallet-button{
+    opacity: 0.3;
+    position: relative;
+    z-index: 1;
+    float: right;
+    background-color: white;
+    border: none
+}
+.wallet-button:hover{
+    opacity: 0.7;
+}
+.container{
+    margin-top: 110px;
+    overflow: hidden;
+    border: 1px solid rgb(218, 218, 218);
+    border-right: none;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    height: 100%;
+    width: 400px;
+    transition: right 1s;
+}
+.header{
+    overflow: hidden;
+    padding-top: 30px;
+    text-align: center;
+    height: 100px;
+    background-color: white;
+    border-bottom: 1px solid rgb(218, 218, 218);
+
+}
+.connectors{
+    padding-top: 40px;
+    width: 100%;
+    height: 80%;
+    margin : 0 auto;
+    background-color: white;
+}
+.connectors > p{
+    text-align: left;
+    margin-bottom: 40px;
+    margin-left: 10px;
+}
+.connectors > button{
+    margin: -0.5px auto;
+    background-color: white;
+    border: 1px solid rgb(218, 218, 218);
+    width: 100%;
+    height: 60px;
+    padding-top: 7px;
+}
+.connectors > button:nth-child(2){
+    border-radius: 10px 10px 0 0;
+}
+
+.connectors > button:last-child{
+    border-radius: 0px 0px 10px 10px;
+}
+.connectors > button > img{
+    position: relative;
+    margin-top: -2px;
+    margin-left: 10px;
+    float:left;
+    height: 50%;
+}
+.connectors > button:not(.disconnect):hover{
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgb(200, 200, 200);
+    box-shadow: 0px 0px 5px 5px rgb(205, 205, 205);
+}
+.connectors > button > h6{
+    padding-left: 15px;
+    float: left;
+}
+.disconnect{
+    padding-bottom: 10px;
+}
+.disconnect:hover{
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgb(200, 200, 200);
+    box-shadow: 0px 0px 5px 5px rgb(191, 137, 137);
+}
