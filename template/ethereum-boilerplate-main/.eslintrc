@@ -33,5 +33,6 @@
     "react/jsx-key": "off",
     "react/no-unescaped-entities": "off",
     "linebreak-style": 0,
+	"no-unused-vars": "off"
   }
 }
