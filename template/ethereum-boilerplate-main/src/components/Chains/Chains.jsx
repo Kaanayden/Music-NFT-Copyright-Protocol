@@ -89,17 +89,23 @@ function Chains() {
   const [selected, setSelected] = useState({});
 
   console.log("chain", chain);
+  console.log("chainId", chainId)
+  console.log("selected", selected);
+
 
   useEffect(() => {
-    if (!chainId) return null;
+    if (!chainId) { return null };
     const newSelected = menuItems.find((item) => item.key === chainId);
     setSelected(newSelected);
     console.log("current chainId: ", chainId);
+
+
   }, [chainId]);
 
   const handleMenuClick = (e) => {
     console.log("switch to: ", e.key);
     switchNetwork(e.key);
+    //window.location.reload(false);
   };
 
   const menu = (
