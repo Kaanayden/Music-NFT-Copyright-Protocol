@@ -1,0 +1,7 @@
+mumbai:
+0x198D17A43A714dE2E0ad422E5Cdeb67994608C81
+https://mumbai.polygonscan.com/address/0x198d17a43a714de2e0ad422e5cdeb67994608c81
+
+rinkeby:
+0x20D6a3b98efd77644961993b55894C488f9b4115
+https://rinkeby.etherscan.io/address/0x20D6a3b98efd77644961993b55894C488f9b4115

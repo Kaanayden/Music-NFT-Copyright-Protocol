@@ -31,7 +31,7 @@ contract MusicNFTCopyrightProtocol is ERC721, ERC721URIStorage {
         mapping( address => bool ) doesHaveLicense;
     }
 
-    event copyrightPriceSet( uint indexed tokenId, uint newPrice );
+    event CopyrightPriceSet( uint indexed tokenId, uint newPrice );
     event UsageLicenseBought( uint indexed tokenId, address indexed buyer, uint copyrightId, uint price );
     event UsageLicenseDataSet( uint indexed tokenId, address indexed buyer, uint copyrightId, string videoDataUrl );
 
@@ -49,7 +49,7 @@ contract MusicNFTCopyrightProtocol is ERC721, ERC721URIStorage {
         require( ownerOf( tokenId ) == msg.sender, "not nft owner" );
         musicNFTs[tokenId].copyrightPrice = price;
 
-        emit copyrightPriceSet( tokenId, price );
+        emit CopyrightPriceSet( tokenId, price );
     }
 
     function buyUsageLicense( uint tokenId ) external payable {
@@ -99,6 +99,10 @@ contract MusicNFTCopyrightProtocol is ERC721, ERC721URIStorage {
     //checks given address whether has all licenses of nft to access private files for owner of NFT via Lit protocol
     function isOwnerWithAddress( uint tokenId, address _address ) external view returns( bool ) {
         return ( ownerOf( tokenId ) == _address );
+    }
+
+    function getUsageCopyrights( uint tokenId ) external view returns ( UsageCopyright[] memory ) {
+        return musicNFTs[tokenId].usageCopyrights;
     }
 
     function withdraw() external {
