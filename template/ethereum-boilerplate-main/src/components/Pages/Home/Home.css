@@ -1,28 +1,36 @@
 .container {
     width: 100%;
     margin-top: -60px;
-    display: block;
+    display: grid;
+    grid-template-columns: 100%;
+    justify-content: center;
+    align-items: center;
 }
-.container .outer {
+.container .header {
+    display: block;
     margin-left: 17.5%;
     width: 65%;
     height: 400px;
     background-color: rgb(164, 23, 189,0.5);
     overflow: hidden;
     border-radius: 10px;
+    box-shadow: 0 1px 10px rgb(151, 164, 175);
 }
-.outer img{
+.header img{
     width: 100%;
     height: 100%;
 }
-.outer .cover{
+.header .cover{
+    display: grid;
+    justify-content: center;
+    align-items: center;
     margin-top: -400px;
     width: 100%;
     height: 400px;
     background-color: rgba(69, 111, 127);
     opacity: 0.7;
 }
-.outer .description{
+.header .description{
     font-size: 50px;
     font-weight: 600;
     color: rgb(255, 255, 255);
@@ -34,8 +42,9 @@
     margin-bottom: -80px;
 }
 .moreinfo{
+    margin: 100px 50%;
+    transform: translate(-50%, -35%);
     color: rgba(255, 255, 255, 0.7);
-    margin: 80px 42.5%;
     text-align: center;
     border-radius: 10px;
     height: 50px;
@@ -48,19 +57,116 @@
     color: rgba(255, 255, 255, 1);
     background-color: rgb(37, 57, 250, 1);
 }
-.container .inner{
-    z-index: 1;
-    margin-top: -10%;
-    margin-left: -7.5%;
-    position: absolute;
+.container>.inner{
+    display: block;
+    margin-left: 50%;
+    transform: translate(-50%);
     display: block;
     width: 80%;
-    height: 1000px;
-    background-color: gray;
+    height: auto;
+    background-color: transparent;
 }
-.inner .logo{
-    display: block;
+.sponsor{
+    padding-bottom: 40px;
+    padding-top: 20px;
+    border: 2px solid rgb(228, 228, 228);
+    border-left: none;
+    border-right: none;
+}
+.sponsor .logo{
+    border-radius: 50%;
+    margin-left: 40%;
+    margin-right: -35% ;
+    float: left;
     width: 60px;
     height: 60px;
     background-color: rgb(249, 54, 54);
+}
+
+.sponsor>p{
+    text-align: left;
+}
+.sponsor .inner{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 8% 8% 8% 8%;
+    gap: 15%;
+}
+.sponsor .inner img{
+    box-shadow: 0 1px 10px rgb(151, 164, 175);
+    border-radius: 50%;
+}
+.animation {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    border-bottom: 2px solid rgb(228, 228, 228);
+    padding-bottom: 30px;
+}
+.inner p{
+    padding-top: 20px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+@keyframes change-wp{
+    from {
+        margin-left: 10%;
+        opacity: 0;   
+    }
+    to {
+        opacity: 1;
+        margin-left: 80%;
+    }
+}
+@keyframes change-lock{
+    from {
+        margin-left: -10%;
+        opacity: 0;  
+    }
+    to {
+        margin-left: 60%;
+        opacity: 1;
+    }
+}
+
+.animation .wp{
+    box-shadow: 0 1px 10px rgb(151, 164, 175);
+    border-radius: 5px;
+    margin-left: 10%;
+    width: 200px;
+    height: 350px;
+    transition: all , 4s;
+}
+.animation .lock{
+    box-shadow: 0 1px 10px rgb(151, 164, 175);
+    border-radius: 5px;
+    margin-top: 10%;
+    margin-left: 60%;
+    opacity: 1;
+}
+.animation:hover .wp{
+    opacity: 0;
+    margin-left: 80%;
+}
+.animation:hover .lock{
+    opacity: 0  ;
+    animation: change-lock 4s 2.5s 1;
+}
+.contact{
+    margin-left: 15%;
+    margin-right: 15%;
+    height: auto;
+}
+.kaan {
+    margin-bottom: 10px;
+}
+.kaan img{
+    height: 150px;
+}
+
+.muhittin {
+}
+.muhittin img{
+    float: right;
+    height: 150px;
 }
