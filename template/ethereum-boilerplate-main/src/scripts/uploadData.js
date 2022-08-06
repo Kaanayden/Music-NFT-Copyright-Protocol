@@ -1,3 +1,5 @@
+import getIPFSLink from "./getIPFSLink";
+
 const nftStorageApiKey = process.env.REACT_APP_NFT_STORAGE_API_KEY;
 
 export default async function uploadData(data) {
@@ -15,5 +17,9 @@ export default async function uploadData(data) {
 
 
     let jsonData = await result.json();
+
+    jsonData.ipfsGatewayUrl = jsonData.value.url;
+    jsonData.ipfsPublicGatewayUrl = getIPFSLink(jsonData.value.url);
+
     return jsonData;
 }
