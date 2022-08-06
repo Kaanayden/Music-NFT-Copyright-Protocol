@@ -29,6 +29,7 @@ export default function Home() {
           <div className="sponsor">
             <div className="logo"></div>
             <p>Sponsors</p>
+            <div className="border"></div>
             <div className="inner">
               <img src={zora}/>
               <img src={polygon}/>
@@ -36,13 +37,15 @@ export default function Home() {
               <img src={nft}/>
             </div>
           </div>
-          <p>More Description</p>
+          <p>Lorem ipsum dolor sit amet, esse impetus argumentum no vix, exerci nostrum pri an. Ea malorum omittantur his, bonorum epicuri neglegentur mea ea, te vis sale primis deseruisse. Eos at summo ponderum accusata, te nec timeam delicatissimi, nam et ipsum eligendi efficiantur. Ne est audiam utamur adversarium, pri ea populo doming.Ei mel inani integre maiestatis. At pro tota scaevola vulputate, te omnes propriae eam. Te utroque commune has. Periculis democritum quo ut, unum postea laoreet at mel.
+</p>
             <div className="animation">
               <img className="wp" src={Whatsapp}/>
               <img className="lock" src={Lock}/>
             </div>
           <br/>
-          <p>More Description</p>
+          <p>Vim at quot lucilius, ex eum iusto voluptatum. Quot complectitur vel ut, mei te eros nonumes inciderint. Cu eam constituto intellegebat, ex iuvaret eleifend pericula nec, esse ignota noluisse eu pro. Commodo consectetuer ius ne. Ut purto nobis verterem sea.Ei mel inani integre maiestatis. At pro tota scaevola vulputate, te omnes propriae eam. Te utroque commune has. Periculis democritum quo ut, unum postea laoreet at mel.
+</p>
         </div>
         <div className="contact">
           <div className="kaan">

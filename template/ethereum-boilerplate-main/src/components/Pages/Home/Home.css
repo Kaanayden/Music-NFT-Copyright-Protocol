@@ -68,15 +68,17 @@
 }
 .sponsor{
     padding-bottom: 40px;
-    padding-top: 20px;
+    padding-top: 10px;
     border: 2px solid rgb(228, 228, 228);
     border-left: none;
     border-right: none;
+    justify-content: center;
 }
 .sponsor .logo{
+    display: block;
     border-radius: 50%;
     margin-left: 40%;
-    margin-right: -35% ;
+    transform: translate(-60%);
     float: left;
     width: 60px;
     height: 60px;
@@ -84,7 +86,18 @@
 }
 
 .sponsor>p{
+    margin-left: 40%;
+    margin-top: -10px;
+    font-size: x-large;
     text-align: left;
+    margin-bottom: -30px;
+}
+.sponsor .border{
+    margin-bottom: 25px;
+    margin-left: 50%;
+    transform: translate(-50%);
+    width: 30%;
+    border-bottom: 2px solid rgb(222, 222, 222);
 }
 .sponsor .inner{
     display: grid;
@@ -105,7 +118,7 @@
 .inner p{
     padding-top: 20px;
     padding-bottom: 50px;
-    text-align: center;
+    text-align: left;
 }
 
 @keyframes change-wp{
