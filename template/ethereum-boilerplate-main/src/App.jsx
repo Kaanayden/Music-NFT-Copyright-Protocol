@@ -70,7 +70,7 @@ const App = () => {
       <Router>
         <Header style={styles.header}>
           <Logo />
-          
+
           <MenuItems />
           <div style={styles.headerRight}>
             <Chains />
@@ -90,15 +90,18 @@ const App = () => {
             <Route path="/test">
               <Test />
             </Route>
+            <Route path="/muhi">
+
+            </Route>
             <Route path="/nonauthenticated">
               <>Please login using the "Authenticate" button</>
             </Route>
           </Switch>
-          <Redirect to="/home" />
+
         </div>
       </Router>
 
-      <Footer style={{ textAlign: "center" , position:"relative" ,marginTop:"1000px"}}>
+      <Footer style={{ textAlign: "center" }}>
         <Text style={{ display: "block" }}>
           ⭐️ Please star this{" "}
           <a
