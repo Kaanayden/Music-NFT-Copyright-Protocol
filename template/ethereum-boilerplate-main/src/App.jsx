@@ -21,6 +21,7 @@ import MarketPlace from "components/Pages/MarketPlace/MarketPlace";
 import Text from "antd/lib/typography/Text";
 
 import MenuItems from "./components/MenuItems";
+import Test from "components/Test";
 const { Header, Footer } = Layout;
 
 const styles = {
@@ -85,6 +86,9 @@ const App = () => {
             </Route>
             <Route path="/marketplace">
               <MarketPlace />
+            </Route>
+            <Route path="/test">
+              <Test />
             </Route>
             <Route path="/nonauthenticated">
               <>Please login using the "Authenticate" button</>
