@@ -15,12 +15,12 @@ import { Layout } from "antd";
 import "antd/dist/antd.css";
 import NativeBalance from "components/NativeBalance";
 import "./style.css";
-import QuickStart from "components/QuickStart";
+import Home from "components/Pages/Home/Home";
+import MarketPlace from "components/Pages/MarketPlace/MarketPlace";
 
 import Text from "antd/lib/typography/Text";
 
 import MenuItems from "./components/MenuItems";
-import Test from "components/Test";
 const { Header, Footer } = Layout;
 
 const styles = {
@@ -69,7 +69,7 @@ const App = () => {
       <Router>
         <Header style={styles.header}>
           <Logo />
-
+          
           <MenuItems />
           <div style={styles.headerRight}>
             <Chains />
@@ -80,27 +80,21 @@ const App = () => {
 
         <div style={styles.content}>
           <Switch>
-            <Route exact path="/quickstart">
-              <QuickStart />
+            <Route exact path="/home">
+              <Home />
             </Route>
-
-            <Route path="/test">
-              <Test />
-            </Route>
-
-            <Route path="/">
-              <Redirect to="/quickstart" />
-            </Route>
-            <Route path="/ethereum-boilerplate">
-              <Redirect to="/quickstart" />
+            <Route path="/marketplace">
+              <MarketPlace />
             </Route>
             <Route path="/nonauthenticated">
               <>Please login using the "Authenticate" button</>
             </Route>
           </Switch>
+          <Redirect to="/home" />
         </div>
       </Router>
-      <Footer style={{ textAlign: "center" }}>
+
+      <Footer style={{ textAlign: "center" , position:"relative" ,marginTop:"1000px"}}>
         <Text style={{ display: "block" }}>
           ⭐️ Please star this{" "}
           <a

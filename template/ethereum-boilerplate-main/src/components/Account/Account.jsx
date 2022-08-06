@@ -21,7 +21,7 @@ const styles = {
     cursor: "pointer",
   },
   text: {
-    color: "#21BF96",
+    color: "#2188bf",
   },
   connector: {
     alignItems: "center",
