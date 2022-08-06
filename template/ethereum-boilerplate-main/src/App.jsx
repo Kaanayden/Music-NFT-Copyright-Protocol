@@ -24,6 +24,7 @@ import Text from "antd/lib/typography/Text";
 
 import MenuItems from "./components/MenuItems";
 import Test from "components/Test";
+import MintNFT from "components/MintNFT";
 const { Header, Footer } = Layout;
 
 const styles = {
@@ -93,11 +94,24 @@ const App = () => {
             <Route path="/test">
               <Test />
             </Route>
+<<<<<<< HEAD
             <Route path="/nft/:id">
               <ShowNFT />
             </Route>
             <Route path="/muhi">
               <Muhi/>
+=======
+
+            <Route path="/mintNFT">
+              <MintNFT />
+            </Route>
+
+            <Route path="/muhi">
+            </Route>
+
+            <Route path="/">
+              <Home />
+>>>>>>> 93fe5a53b939b1a8c3538921d759d9bb13bf49cd
             </Route>
             <Route path="/nonauthenticated">
               <>Please login using the "Authenticate" button</>
