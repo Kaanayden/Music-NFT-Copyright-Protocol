@@ -1,0 +1,47 @@
+.card-outer{
+    overflow: hidden;
+    position: relative;
+    margin: 10px auto;
+   
+    border-radius: 15px;
+    width: 200px;
+    height: 300px;
+    background-color: rgb(71, 94, 94);
+}
+.card-outer:hover{
+    box-shadow: 3px 3px 5px 3px gray;
+}
+
+.sell-button{
+    left: -25%;
+    color: white;
+    font-size: 100%;
+    border: none;
+    background-color: rgb(217, 103, 92);
+    position: absolute;
+    width: 150%;
+    height: 15%;
+    bottom: -16%;
+    transition: bottom 0.4s;
+}
+.card-outer:hover > .sell-button{
+    bottom: -0.05%;
+}
+
+.card-container{
+    width: 220px;
+    overflow: hidden;
+}
+.sell-sell{
+    color: white;
+    font-size: 100%;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(217, 103, 92);
+    width: 100px;
+    height: 30px;
+}
+.sell-sell:hover{
+    background-color: rgb(230, 103, 92);
+    box-shadow: 0px 0px 3px 3px rgb(210, 210, 210);
+}

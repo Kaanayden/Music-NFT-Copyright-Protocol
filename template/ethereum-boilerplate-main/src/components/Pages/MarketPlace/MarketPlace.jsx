@@ -4,6 +4,7 @@ import { Layout, Checkbox, Divider, Pagination } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import BuyCard from 'components/NFTCards/BuyCard/BuyCard';
 import "./MarketPlace.css";
 
 const {  Content, Sider } = Layout;
@@ -14,7 +15,7 @@ const plainOptions = ['description', 'On auction', 'Orange'];
 
 export default function MarketPlace() {
 
-  const pageSize = 4;
+  const pageSize = 6;
   const [checkedList, setCheckedList] = useState();
   const [indeterminate, setIndeterminate] = useState(true);
   const [checkAll, setCheckAll] = useState(false);
@@ -87,7 +88,7 @@ export default function MarketPlace() {
         </div>
         <ul className='nfts'>
           {filteredNfts?.map((filteredNfts,index)=> index >= minIndex && index < maxIndex && (
-            <li key={filteredNfts.id}>{filteredNfts.title} <Link to={`/nft/${filteredNfts.id}`}>View</Link></li>
+            <li key={filteredNfts.id}><BuyCard/> <Link to={`/nft/${filteredNfts.id}`}>View</Link></li>
           ))
           }
         </ul>

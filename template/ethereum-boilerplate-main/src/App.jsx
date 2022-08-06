@@ -18,7 +18,7 @@ import "./style.css";
 import Home from "components/Pages/Home/Home";
 import MarketPlace from "components/Pages/MarketPlace/MarketPlace";
 import ShowNFT from "components/Pages/ShowNFT/ShowNFT";
-import Muhi from "components/Pages/MarketPlace/MarketPlace";
+import Muhi from "components/Pages/Muhi/Muhi";
 
 import Text from "antd/lib/typography/Text";
 
@@ -94,33 +94,24 @@ const App = () => {
             <Route path="/test">
               <Test />
             </Route>
-<<<<<<< HEAD
             <Route path="/nft/:id">
               <ShowNFT />
             </Route>
-            <Route path="/muhi">
-              <Muhi/>
-=======
-
             <Route path="/mintNFT">
               <MintNFT />
             </Route>
-
             <Route path="/muhi">
+              <Muhi/>
             </Route>
-
             <Route path="/">
               <Home />
->>>>>>> 93fe5a53b939b1a8c3538921d759d9bb13bf49cd
             </Route>
             <Route path="/nonauthenticated">
               <>Please login using the "Authenticate" button</>
             </Route>
           </Switch>
-
         </div>
       </Router>
-
       <Footer style={{ textAlign: "center" }}>
         <Text style={{ display: "block" }}>
           ⭐️ Please star this{" "}
