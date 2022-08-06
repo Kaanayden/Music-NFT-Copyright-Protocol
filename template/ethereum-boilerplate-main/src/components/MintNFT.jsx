@@ -38,6 +38,8 @@ export default function MintNFT(props) {
   const { Moralis } = useMoralis();
   const { switchNetwork, chainId, chain, account } = useChain();
 
+  //onFinish prop
+
   const submitNft = async () => {
 
     let output = await Moralis.executeFunction(
