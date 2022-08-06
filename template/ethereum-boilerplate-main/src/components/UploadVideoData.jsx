@@ -1,12 +1,14 @@
 import SelectVideoRange from "./SelectVideoRange";
-import UploadVideoData from "./UploadVideoData";
 import YoutubeComponent from "./YoutubeComponent";
 
 
-export default function Test() {
+export default function UploadVideoData(props) {
+
+
+
     return (
         <div>
-            <SelectVideoRange />
+           
 
         </div>
     );

@@ -12,11 +12,11 @@ const APP_ID = process.env.REACT_APP_MORALIS_APPLICATION_ID;
 const SERVER_URL = process.env.REACT_APP_MORALIS_SERVER_URL;
 
 const Application = () => {
-    return (
-      <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
-        <App/>
-      </MoralisProvider>
-    );
+  return (
+    <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
+      <App />
+    </MoralisProvider>
+  );
 };
 
 ReactDOM.render(
