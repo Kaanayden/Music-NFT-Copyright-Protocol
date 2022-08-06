@@ -4,7 +4,7 @@
     width: 100%;
     height: 100%;
     position: fixed;
-    z-index: 100;
+    z-index: 1001;
     background-color: rgba(0,0,0,0.55); 
     overflow: hidden;
     display: block;
@@ -21,7 +21,6 @@
   }
   .close {
     color: #aaa;
-    position: absolute;
     right: 10px;
     top: -5px;
     font-size: 28px;
