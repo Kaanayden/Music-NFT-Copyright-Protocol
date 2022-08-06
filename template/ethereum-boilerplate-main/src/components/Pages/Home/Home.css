@@ -1,10 +1,10 @@
 .container {
-    width: 100%;
-    margin-top: -60px;
-    display: grid;
-    grid-template-columns: 100%;
-    justify-content: center;
-    align-items: center;
+    width: 100%!important;
+    margin-top: -60px!important;
+    display: grid!important;
+    grid-template-columns: 100%!important;
+    justify-content: center!important;
+    align-items: center!important;
 }
 .container .header {
     display: block;
@@ -177,8 +177,6 @@
     height: 150px;
 }
 
-.muhittin {
-}
 .muhittin img{
     float: right;
     height: 150px;
