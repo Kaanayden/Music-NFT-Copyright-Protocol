@@ -5,7 +5,6 @@ const { Panel } = Collapse;
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 import "./ShowNFT.css";
-import Aud from "../../images/coraline.mp3";
 
 const ShowNFT = () => {
     const egNFT = { tokenid:"8932795879048732986738347289",
@@ -15,7 +14,7 @@ const ShowNFT = () => {
                     name:"bla bla bla",
                     description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                     img:"https://www.qries.com/images/banner_logo.png",
-                    audio:{Aud},
+                    audio:"https://actions.google.com/sounds/v1/alarms/bugle_tune.ogg",
                     copyrights:["jsahgjks","ajhfjkshdk"],
                 }
 
@@ -42,9 +41,10 @@ const ShowNFT = () => {
         <div className='nft-container'>
             <div className='nft-image'>
                 <img src={egNFT.img}/>
-                <audio controls autoPlay>
-                    <source src={egNFT.audio} type="audio/mpeg"/>
-                </audio>
+                <audio
+                    src={egNFT.audio}
+                    controls
+                />
             </div>
             <div className='nft-info'>
                 <p className='name'>Name: {egNFT.name}</p>
