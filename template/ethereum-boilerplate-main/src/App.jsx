@@ -22,6 +22,7 @@ import Text from "antd/lib/typography/Text";
 
 import MenuItems from "./components/MenuItems";
 import Test from "components/Test";
+import MintNFT from "components/MintNFT";
 const { Header, Footer } = Layout;
 
 const styles = {
@@ -90,6 +91,11 @@ const App = () => {
             <Route path="/test">
               <Test />
             </Route>
+
+            <Route path="/mintNFT">
+              <MintNFT />
+            </Route>
+
             <Route path="/muhi">
             </Route>
 
