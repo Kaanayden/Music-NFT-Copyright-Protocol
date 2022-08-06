@@ -91,7 +91,10 @@ const App = () => {
               <Test />
             </Route>
             <Route path="/muhi">
+            </Route>
 
+            <Route path="/">
+              <Home />
             </Route>
             <Route path="/nonauthenticated">
               <>Please login using the "Authenticate" button</>
