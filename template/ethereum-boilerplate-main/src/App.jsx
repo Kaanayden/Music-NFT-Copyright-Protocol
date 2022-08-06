@@ -17,6 +17,8 @@ import NativeBalance from "components/NativeBalance";
 import "./style.css";
 import Home from "components/Pages/Home/Home";
 import MarketPlace from "components/Pages/MarketPlace/MarketPlace";
+import ShowNFT from "components/Pages/ShowNFT/ShowNFT";
+import Muhi from "components/Pages/MarketPlace/MarketPlace";
 
 import Text from "antd/lib/typography/Text";
 
@@ -84,14 +86,18 @@ const App = () => {
             <Route exact path="/home">
               <Home />
             </Route>
+            
             <Route path="/marketplace">
               <MarketPlace />
             </Route>
             <Route path="/test">
               <Test />
             </Route>
+            <Route path="/nft/:id">
+              <ShowNFT />
+            </Route>
             <Route path="/muhi">
-
+              <Muhi/>
             </Route>
             <Route path="/nonauthenticated">
               <>Please login using the "Authenticate" button</>
