@@ -93,6 +93,7 @@ const ShowNFT = () => {
         }
 
         setCopyright(copyrightData)
+        return (copyrightData)
     }
 
     const checkType = (data, text) => {
@@ -110,6 +111,11 @@ const ShowNFT = () => {
     const openPage = async () => {
         await fetchTokenIdMetadata()
         await getEvents();
+    }
+
+    const handleRefresh = async () => {
+        return (await getEvents());
+
     }
 
     console.log(chain)
@@ -134,10 +140,10 @@ const ShowNFT = () => {
                             <p className='token-id'>Token ID: {nft.token_id}</p>
                             <p className="contract-id">Contract Address: {nft.token_address}ETH</p>
                             <div className='prices'>
-                                <p className="price"><Statistic title="NFT Price" value={112893 + " " +chain?.nativeCurrency.symbol} /></p>
-                                <p className="cprice"><Statistic title="Copyright Price" value={112893 + " " +chain?.nativeCurrency.symbol} /></p>
+                                <p className="price"><Statistic title="NFT Price" value={112893 + " " + chain?.nativeCurrency.symbol} /></p>
+                                <p className="cprice"><Statistic title="Copyright Price" value={112893 + " " + chain?.nativeCurrency.symbol} /></p>
                             </div>
-                           
+
                             <div className='description-div'>
                                 Description:
                                 <p className='description'>{nft.json.description}</p>
@@ -159,7 +165,8 @@ const ShowNFT = () => {
                             {nft && copyright &&
                                 <Copyrights
                                     nft={nft}
-                                    copyrightInfo={copyright}
+                                    copyrightInfos={copyright}
+                                    refresh={handleRefresh}
                                 />
                             }
                         </Panel>

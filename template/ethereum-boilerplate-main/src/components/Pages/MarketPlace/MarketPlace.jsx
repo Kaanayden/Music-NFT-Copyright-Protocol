@@ -26,6 +26,8 @@ export default function MarketPlace() {
   const Web3Api = useMoralisWeb3Api();
   const { switchNetwork, chainId, chain, account } = useChain();
 
+  
+
   const fetchAllTokenIds = async () => {
     const options = {
       address: contractAddress,

@@ -26,11 +26,6 @@ const menuItems = [
     value: "Mumbai",
     icon: <PolygonLogo />,
   },
-  {
-    key: "0x4",
-    value: "Rinkeby Testnet",
-    icon: <ETHLogo />,
-  },
 
 ];
 

@@ -55,7 +55,7 @@ export default function Copyright(props) {
                     footer={null}
                     onCancel={() => setVisible(false)}
                 >
-                    <YoutubeComponent url={ipfsData.videoUrl} start={ipfsData.start} end={ipfsData.end} />
+                    <YoutubeComponent url={ipfsData.videoUrl} start={ipfsData.start} end={ipfsData.end} playing={visible} />
                     <p>Owned by: {<AddressLink address={data.args.buyer} />}</p>
                     <p>{getTimeRepresantation(ipfsData?.start) + "-" + getTimeRepresantation(ipfsData?.end)}</p>
                 </Modal>

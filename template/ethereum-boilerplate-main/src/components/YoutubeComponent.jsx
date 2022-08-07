@@ -5,12 +5,12 @@ import ReactPlayer from 'react-player/youtube'
 export default function YoutubeComponent(props) {
 
     return (
-        <ReactPlayer url = {props.url}
+        <ReactPlayer url={props.url}
             controls={true}
             playsinline={true}
             loop={true}
             onDuration={
-                ( duration ) => props.handleDuration( duration )
+                (duration) => props.handleDuration(duration)
             }
             config={{
                 youtube: {

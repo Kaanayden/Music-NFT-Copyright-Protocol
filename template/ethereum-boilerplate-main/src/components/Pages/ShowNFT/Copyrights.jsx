@@ -23,22 +23,34 @@ export default function Copyrights(props) {
     const { switchNetwork, chainId, chain, account } = useChain();
     const [free, setFree] = useState([]);
 
-    const { nft, copyrightInfo } = props;
+    const [isLicenseOwner, setIsLicenseOwner] = useState(false);
+
+    const { nft, copyrightInfos, refresh } = props;
+
+    const [copyrightInfo, setCopyrightInfo] = useState(copyrightInfos);
 
     const [menu, setMenu] = useState("all");
     const [videoRangeVisible, setVideoRangeVisible] = useState(false)
+    const [isNftOwner, setIsNftOwner] = useState(false);
 
     const handleSelect = (value) => {
         setMenu(value.key);
         if (value.key == "userfree" && copyrightInfo) {
             checkFreeLicense()
         }
+        if (value.key == "private" && copyrightInfo) {
+            handlePrivate()
+        }
     }
 
+    useEffect(() => {
 
-    
+        //setMenu("all");
+    }, [account])
+
 
     const checkFreeLicense = async () => {
+        setCopyrightInfo(await refresh())
         const web3Provider = await Moralis.web3
         const ethers = Moralis.web3Library;
         const contract = new ethers.Contract(contractAddress, abi, web3Provider);
@@ -53,6 +65,7 @@ export default function Copyrights(props) {
             }
         }
         console.log("array", array)
+
         setFree(array);
     }
 
@@ -84,11 +97,26 @@ export default function Copyrights(props) {
         await checkFreeLicense()
     }
 
+    //lit protocol private files
+    const handlePrivate = async () => {
+
+        const web3Provider = await Moralis.web3
+        const ethers = Moralis.web3Library;
+        //const signer = web3Provider.getSigner();
+        const contract = new ethers.Contract(contractAddress, abi, web3Provider);
+
+        let licensed = await contract.checkLicenseWithAddress(nft.token_id, account)
+        let owner = await contract.ownerOf(nft.token_id)
+        setIsLicenseOwner(licensed);
+        setIsNftOwner(owner.toLowerCase() == account.toLowerCase());
+    }
+
 
     return (
         <div>
 
             <Menu
+                selectedKeys={menu}
                 mode="horizontal"
                 defaultSelectedKeys={['all']}
                 onSelect={handleSelect}
@@ -158,7 +186,14 @@ export default function Copyrights(props) {
                 menu == "private" &&
                 <div>
                     <Alert message="You need to own NFT or buy usage copyright license to access private files." type="warning" />
-
+                    <Button type="primary" shape="round" icon={<ShoppingCartOutlined />} size="large" onClick={handlePrivate} disabled={!isLicenseOwner}>View Usage Paid Files</Button>
+                    <Button type="primary" shape="round" icon={<ShoppingCartOutlined />} size="large" onClick={buyUsage} disabled={!isNftOwner}>View Owner Files</Button>
+                    {isOwner &&
+                        <div>
+                            <Button type="primary" danger shape="round" icon={<ShoppingCartOutlined />} size="large" onClick={handlePrivate} disabled={!isOwner}>Set Usage Paid Files</Button>
+                            <Button type="primary" danger shape="round" icon={<ShoppingCartOutlined />} size="large" onClick={buyUsage} disabled={!isOwner}>Set Owner Files</Button>
+                        </div>
+                    }
                 </div>
             }
 
