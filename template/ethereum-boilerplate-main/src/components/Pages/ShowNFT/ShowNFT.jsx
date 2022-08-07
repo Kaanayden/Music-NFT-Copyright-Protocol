@@ -74,11 +74,13 @@ const ShowNFT = () => {
 
 
     const getEvents = async () => {
-        const web3Provider = await Moralis.enableWeb3();
+        const web3Provider = await Moralis.web3;
         const ethers = Moralis.web3Library;
         const contract = new ethers.Contract(contractAddress, abi, web3Provider);
         const blockNumber = await web3Provider.getBlockNumber();
+
         let result = await contract.queryFilter("*", blockNumber - 15000, blockNumber)
+
         console.log("result", result);
         let copyrightData = {}
         copyrightData.priceSet = result.filter((data) => checkType(data, "CopyrightPriceSet"));
@@ -98,7 +100,9 @@ const ShowNFT = () => {
     }
 
     let isOwner;
+    console.log("acctest", account);
     if (nft) {
+
         isOwner = (nft?.owner_of.toLowerCase() == account?.toLowerCase())
 
     }
@@ -111,7 +115,7 @@ const ShowNFT = () => {
     console.log(chain)
     return (
         <div>
-            <button style={nft?{visibility:"hidden"}:{visibility:"visible"}} onClick={openPage}>Click to See NFT</button>
+            <button style={nft ? { visibility: "hidden" } : { visibility: "visible" }} onClick={openPage}>Click to See NFT</button>
             {nft &&
                 <div className='nft-outer'>
 
