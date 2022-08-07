@@ -38,10 +38,45 @@
     border: none;
     border-radius: 10px;
     background-color: rgb(217, 103, 92);
-    width: 100px;
+    width: 150px;
     height: 30px;
+    margin-right: 10px;
 }
 .sell-sell:hover{
     background-color: rgb(230, 103, 92);
     box-shadow: 0px 0px 3px 3px rgb(210, 210, 210);
+}
+.card-image {
+    width: 200px;
+    height: 210px;
+    background-color: white;
+}
+.card-image>img{
+    width: 200px;
+    height: 210px;
+}
+.buy-modal{
+    height: 150px;
+}
+.modal-image{
+    margin-right: 5px;
+    float: left;
+    width: 150px;
+    border-radius: 10px;
+}
+.sell-modal>p{
+    margin-bottom: 2px;
+}
+.card-info *{
+    padding-top: 2px;
+    color: rgba(240, 248, 255, 0.566);
+    text-align: left;
+    padding-left: 10px;
+}
+.card-info .card-name{
+    padding-top: 5px;
+    font-weight: 700;
+    padding-left: 0;
+    font-size: 20px;
+    text-align: center;
 }
