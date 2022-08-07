@@ -9,10 +9,15 @@ import uploadData from 'scripts/uploadData';
 import getIPFSLink from 'scripts/getIPFSLink';
 const { Text, Link } = Typography;
 
+import { useMoralisWeb3Api, useChain, useMoralis } from "react-moralis";
+import contracts from '../contracts/contracts.json'
+const contractAddress = contracts.mumbai;
+import abi from '../contracts/contractAbi'
+
 
 export default function SelectVideoRange(props) {
-
-    //props: tokenId and onFinish
+    const { Moralis } = useMoralis();
+    const { tokenId, copyrightId, onFinish } = props
 
     const [urlWarning, setUrlWarning] = useState();
     const [videoUrl, setVideoUrl] = useState(false);
@@ -71,12 +76,26 @@ export default function SelectVideoRange(props) {
         let result = await uploadData(JSON.stringify(data));
         console.log(result);
         setResult(result);
+
     }
 
     if (start > end) {
         let temp = start;
         setStart(end);
         setEnd(temp);
+    }
+
+    const handleClick = async () => {
+
+        const web3Provider = await Moralis.web3
+        const ethers = Moralis.web3Library;
+        const signer = web3Provider.getSigner();
+
+        const contract = new ethers.Contract(contractAddress, abi, signer);
+
+        await contract.setUsedVideoData(tokenId, copyrightId, result.ipfsGatewayUrl);
+
+        onFinish();
     }
 
     return (
@@ -156,10 +175,12 @@ export default function SelectVideoRange(props) {
 
                     }
                     extra={[
-                        <Button type="primary" key="console" icon={<SaveOutlined />}>
+                        <Button type="primary" key="console" icon={<SaveOutlined />}
+                            onClick={handleClick}
+                        >
                             Submit To Blockchain
                         </Button>,
-                        <Button danger key="cancel" icon={<DeleteOutlined />}>Cancel</Button>,
+                        <Button danger key="cancel" icon={<DeleteOutlined />} onClick={onFinish}>Cancel</Button>,
                     ]}
                 />
             </div>
