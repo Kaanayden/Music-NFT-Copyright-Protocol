@@ -14,6 +14,7 @@ import getIPFSLink from 'scripts/getIPFSLink';
 import Copyright from './Copyright';
 import SetCopyright from './SetCopyright';
 import LitJsSdk from 'lit-js-sdk'
+import uploadData from 'scripts/uploadData';
 
 const { Meta } = Card;
 
@@ -175,28 +176,25 @@ export default function Copyrights(props) {
 
     }
 
-    const handleOwnerUpload = (info) => {
 
-    }
 
     function handleInput(e) {
         setData(e.target.value);
         console.log(data)
     }
 
-    const handleUserUpload = async (e) => {
-        let file = e.file.originFileObj
-        console.log(file);
-        setUser(file);
-    
+    const handleOwnerUpload = async () => {
+
+
+
         const client = new LitJsSdk.LitNodeClient()
         await client.connect()
         console.log(client);
         const chain = "mumbai";
-    
+
         const options = {
-          address: contractAddress,
-          chain: chainId,
+            address: contractAddress,
+            chain: chainId,
         };
         const NFTs = await Web3Api.token.getAllTokenIds(options);
         const id = NFTs.total;
@@ -239,61 +237,60 @@ export default function Copyrights(props) {
               },
             ]
         */
-    
+
         const accessControlConditions = [
-          {
-            contractAddress: '',
-            standardContractType: '',
-            chain: 'mumbai',
-            method: 'eth_getBalance',
-            parameters: [':userAddress', 'latest'],
-            returnValueTest: {
-              comparator: '>=',
-              value: '1000000000000',  // 0.000001 ETH
+            {
+                contractAddress: '',
+                standardContractType: '',
+                chain: 'mumbai',
+                method: 'eth_getBalance',
+                parameters: [':userAddress', 'latest'],
+                returnValueTest: {
+                    comparator: '>=',
+                    value: '1000000000000',  // 0.000001 ETH
+                },
             },
-          },
         ]
-    
+
         const authSig = await LitJsSdk.checkAndSignAuthMessage({ chain: 'mumbai' })
         const { encryptedString, symmetricKey } = await LitJsSdk.encryptString(
-          "this is a secret message"
+            "this is a secret message"
         );
-    
+
         let encryptedSymmetricKey = await client.saveEncryptionKey({
-          accessControlConditions,
-          symmetricKey,
-          authSig,
-          chain,
+            accessControlConditions,
+            symmetricKey,
+            authSig,
+            chain,
         });
-    
+
         encryptedSymmetricKey = LitJsSdk.uint8arrayToString(encryptedSymmetricKey, "base16")
-    
+
         let encrypted = {
-          encryptedString: blobToBase64(encryptedString)
-          , encryptedSymmetricKey: encryptedSymmetricKey
+            encryptedString: encryptedString
+            , encryptedSymmetricKey: encryptedSymmetricKey
         }
         console.log("encryiption", encrypted);
-    
-    
+
+
         const symmetricKeyy = await client.getEncryptionKey({
-          accessControlConditions,
-          toDecrypt: encryptedSymmetricKey,
-          chain,
-          authSig
+            accessControlConditions,
+            toDecrypt: encryptedSymmetricKey,
+            chain,
+            authSig
         })
-    
+
         const decryptedString = await LitJsSdk.decryptString(
-          encryptedString,
-          symmetricKeyy
+            encryptedString,
+            symmetricKeyy
         );
         console.log("decrypt", decryptedString)
-        setUserUploading(true);
+
         let result = await uploadData(JSON.stringify(encrypted));
         console.log(result)
-        setUserUploading(false);
-        setUserIpfs(result);
-    
-      }
+
+
+    }
 
     return (
         <div>
