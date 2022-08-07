@@ -105,12 +105,10 @@ const ShowNFT = () => {
         }
 
         setCopyright(copyrightData)
-        ethers.BigNumber
     }
 
     const checkType = (data, text) => {
-
-        return data.event == text && data.args.tokenId.toNumber() == id
+        return data.event == text
     }
 
     let isOwner;
