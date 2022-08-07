@@ -166,7 +166,7 @@ const ShowNFT = () => {
                         <Panel header="Usage Copyrights" className='nft-copyrights'>
                             <Copyrights
                                 nft={nft}
-                                copyrightInfo
+                                copyrightInfo={copyright}
                             />
                         </Panel>
                     </Collapse>
