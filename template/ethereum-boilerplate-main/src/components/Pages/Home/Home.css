@@ -151,10 +151,11 @@
     transition: all , 4s;
 }
 .animation .lock{
+    width: 300px;
     box-shadow: 0 1px 10px rgb(151, 164, 175);
     border-radius: 5px;
-    margin-top: 10%;
-    margin-left: 60%;
+    margin-top: 5%;
+    margin-left: 50%;
     opacity: 1;
 }
 .animation:hover .wp{
@@ -164,4 +165,8 @@
 .animation:hover .lock{
     opacity: 0  ;
     animation: change-lock 4s 2.2s 1;
+}
+.xx{
+    font-size: larger;
+    text-align: center;
 }
