@@ -51,5 +51,7 @@ https://github.com/Kaanayden/Music-NFT-Copyright-Protocol/blob/main/template/eth
 
 https://github.com/Kaanayden/Music-NFT-Copyright-Protocol/blob/main/contracts/Contract%20Addresses.txt
 
+https://github.com/Kaanayden/Music-NFT-Copyright-Protocol/blob/main/contracts/MusicNFTCopyrightProtocol.sol
+
 
 
