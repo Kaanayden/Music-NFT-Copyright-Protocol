@@ -35,11 +35,19 @@ This project uses @zora, @litprotocol, @NFT.storage and @polygon. We have upload
 
 Zora used in:
 
+https://github.com/Kaanayden/Music-NFT-Copyright-Protocol/blob/main/template/ethereum-boilerplate-main/src/components/Pages/ShowNFT/ShowNFT.jsx
+
 NFT.storage used in:
+
+https://github.com/Kaanayden/Music-NFT-Copyright-Protocol/blob/main/template/ethereum-boilerplate-main/src/components/MintNFT/MintNFT.jsx
 
 Lit Protocol used in:
 
+https://github.com/Kaanayden/Music-NFT-Copyright-Protocol/blob/main/template/ethereum-boilerplate-main/src/components/Pages/ShowNFT/Copyrights.jsx
+
 Polygon used in:
+
+https://github.com/Kaanayden/Music-NFT-Copyright-Protocol/blob/main/template/ethereum-boilerplate-main/src/components/Chains/Chains.jsx
 
 
 
