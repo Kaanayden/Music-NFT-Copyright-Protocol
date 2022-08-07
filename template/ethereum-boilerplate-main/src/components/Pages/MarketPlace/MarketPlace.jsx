@@ -34,9 +34,10 @@ export default function MarketPlace() {
     const NFTs = await Web3Api.token.getAllTokenIds(options);
     setAllNfts(NFTs.result);
     console.log(NFTs);
+    setFilteredNfts(NFTs.result)
   }
 
-  
+
 
 
   const pageSize = NFTS_PER_PAGE;
@@ -70,14 +71,13 @@ export default function MarketPlace() {
   }
 
   const filterNfts = () => {
-    setFilteredNfts(allNfts)
+
   }
 
-  const handleApply = () => {
+  const handleApply = async () => {
     setCurrent(1)
     onPage(1)
-    fetchAllTokenIds();
-    filterNfts()
+    await fetchAllTokenIds();
   }
 
 
@@ -97,7 +97,7 @@ export default function MarketPlace() {
           <button onClick={handleApply} className='apply'>Apply Filters</button>
         </div>
         <ul className='nfts'>
-          {filteredNfts?.map((nft,index)=> index >= minIndex && index < maxIndex && (
+          {filteredNfts?.map((nft, index) => index >= minIndex && index < maxIndex && (
             <li key={nft.token_id}><BuyCard id={nft.token_id}></BuyCard></li>
           ))
           }
