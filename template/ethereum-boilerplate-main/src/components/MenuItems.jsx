@@ -30,9 +30,7 @@ function MenuItems() {
       {isAuthenticated && <Menu.Item key="/wallet">
         <NavLink to="/wallet">MyWallet</NavLink>
       </Menu.Item>}
-      <Menu.Item key="/marketplace">
-        <NavLink to="/marketplace">Marketplace</NavLink>
-      </Menu.Item>
+
       
     </Menu>
   );

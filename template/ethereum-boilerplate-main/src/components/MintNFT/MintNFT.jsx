@@ -6,11 +6,11 @@ import { BsFileEarmarkMusic } from "react-icons/bs";
 import uploadFileNftStorage from 'scripts/uploadFileNftStorage';
 import uploadData from 'scripts/uploadData';
 import getIPFSLink from 'scripts/getIPFSLink';
+import "./MintNFT.css";
 
-
-import contracts from '../contracts/contracts.json'
+import contracts from '../../contracts/contracts.json'
 const contractAddress = contracts.mumbai;
-import abi from '../contracts/contractAbi'
+import abi from '../../contracts/contractAbi'
 
 import { useMoralis, useChain } from 'react-moralis';
 import { useAPIContract as getAPIContract } from 'hooks/useAPIContract';
@@ -160,141 +160,6 @@ export default function MintNFT(props) {
 
 
   return (
-    <div>
-
-
-
-      {
-        !result &&
-        <Spin
-          spinning={pending}
-          tip={"Data is being uploaded to IPFS..."}
-        >
-          <Input
-            placeholder="Name"
-            //addonBefore="Name"
-            size="large"
-            onChange={handleNameChange}
-          />
-          <TextArea
-            placeholder="Description"
-            size="large"
-            autoSize={{ minRows: 2, maxRows: 5 }}
-            onChange={handleDescriptionChange}
-          />
-
-          <Spin tip="Uploading To IPFS..." spinning={isImageUploading}>
-            <Upload
-              name="image"
-              listType="picture-card"
-              className="avatar-uploader"
-              showUploadList={false}
-              onChange={handleChange}
-            >
-              {image ? (
-                <img
-
-                  src={imageUrl}
-                  alt="Image"
-                  style={{
-                    width: '100%',
-                  }}
-                />
-              ) : (
-                uploadButton
-              )}
-            </Upload>
-          </Spin>
-          {imageIpfs &&
-            <Alert message={
-
-              <Link href={imageIpfs.ipfsPublicGatewayUrl} target="_blank">
-                Image has been uploaded to IPFS successfully.
-              </Link>
-            } type="success" />
-
-          }
-
-          <div>
-
-            <Spin tip="Uploading To IPFS..." spinning={isAudioUploading}>
-              <Upload
-                name="audio"
-                listType="picture-card"
-                className="avatar-uploader"
-                showUploadList={false}
-                onChange={handleAudioChange}
-              >
-                {image ? (
-                  <div>
-                    {loading ? <LoadingOutlined /> : <BsFileEarmarkMusic />}
-                    <div
-                      style={{
-                        marginTop: 8,
-                      }}
-                    >
-                      Upload New Audio File
-                    </div>
-                  </div>
-
-                ) : (
-                  uploadMusicButton
-                )}
-              </Upload>
-            </Spin>
-            {audio &&
-              <audio
-                src={audioUrl}
-                controls
-              />
-
-            }
-            {audioIpfs &&
-              <Alert message={
-
-                <Link href={audioIpfs.ipfsPublicGatewayUrl} target="_blank">
-                  Audio has been uploaded to IPFS successfully.
-                </Link>
-              } type="success" />
-
-            }
-          </div>
-
-          <Button type="primary" shape="round" icon={<SaveOutlined />} size="large"
-            disabled={!(name && description && imageIpfs && audioIpfs)}
-            onClick={handleClick}
-          >
-            Mint NFT
-          </Button>
-        </Spin>
-      }
-
-      {result &&
-        <Result
-          status="success"
-          title="Successfully Uploaded Metadata to IPFS!"
-          subTitle={
-            <div>
-              <Text type="secondary">Your NFT metadata saved in IPFS. </Text>
-
-              <Link href={getIPFSLink(result.value.url)} target="_blank">
-                You can check it by clicking here.
-              </Link>
-            </div>
-
-          }
-          extra={[
-            <Button type="primary" key="console" icon={<SaveOutlined />}
-              onClick={submitNft}
-            >
-              Submit To Blockchain And Mint Your Music NFT
-            </Button>,
-            <Button danger key="cancel" icon={<DeleteOutlined />}>Cancel</Button>,
-          ]}
-        />
-
-      }
-
-    </div>
-  );
+    <button className='mint-button'>Mint NFT</button>
+  )
 }

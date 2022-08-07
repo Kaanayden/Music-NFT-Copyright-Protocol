@@ -24,7 +24,7 @@ import Text from "antd/lib/typography/Text";
 
 import MenuItems from "./components/MenuItems";
 import Test from "components/Test";
-import MintNFT from "components/MintNFT";
+import MintNFT from "components/MintNFT/MintNFT";
 import MyWallet from "components/Pages/MyWallet/MyWallet";
 
 const { Header, Footer } = Layout;
@@ -78,6 +78,7 @@ const App = () => {
 
           <MenuItems />
           <div style={styles.headerRight}>
+            {isAuthenticated && <MintNFT />}
             <Chains />
             <NativeBalance />
             <Account />
