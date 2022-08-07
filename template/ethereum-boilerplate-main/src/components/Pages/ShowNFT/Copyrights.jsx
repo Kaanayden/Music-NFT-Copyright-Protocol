@@ -39,7 +39,9 @@ export default function Copyrights(props) {
         const ethers = Moralis.web3Library;
         const contract = new ethers.Contract(contractAddress, abi, web3Provider);
         let array = []
+        console.log("olay1")
         let copyrights = await contract.getUsageCopyrights(nft.token_id);
+        console.log("olay2")
         console.log("copy", copyrights)
         for (let i = 0; i < copyrightInfo.licenseBought.length; i++) {
             if (copyrights[copyrightInfo.licenseBought[i].args.copyrightId].isDataSet != false) {

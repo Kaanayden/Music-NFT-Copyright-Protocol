@@ -92,7 +92,9 @@ const ShowNFT = () => {
         const ethers = Moralis.web3Library;
         const contract = new ethers.Contract(contractAddress, abi, web3Provider);
         const blockNumber = await web3Provider.getBlockNumber();
+        
         let result = await contract.queryFilter("*", blockNumber - 15000, blockNumber)
+
         console.log("result", result);
         let copyrightData = {}
         copyrightData.priceSet = result.filter((data) => checkType(data, "CopyrightPriceSet"));
@@ -112,7 +114,9 @@ const ShowNFT = () => {
     }
 
     let isOwner;
+    console.log("acctest", account);
     if (nft) {
+
         isOwner = (nft?.owner_of.toLowerCase() == account?.toLowerCase())
 
     }
