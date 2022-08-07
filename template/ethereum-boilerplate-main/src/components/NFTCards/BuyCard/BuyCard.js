@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { LoadingOutlined } from '@ant-design/icons';
 import { Skeleton, Modal, Spin, Result } from "antd";
+import { Link } from 'react-router-dom';
 import "./BuyCard.css";
 
 const antIcon = (
@@ -12,7 +13,7 @@ const antIcon = (
     />
   );
 
-const BuyCard = (nft)=>{
+const BuyCard = ({nft,id})=>{
     
     const [loading, setLoading] = useState(true);
     const [showModal, setModal] = useState(false);
@@ -42,6 +43,7 @@ const BuyCard = (nft)=>{
         <div className="card-container">
             <Skeleton loading={loading} active paragraph={{rows: 8}}>
                 <div className="card-outer">
+                    <Link to={`/nft/${id}`}>View</Link>
                     <button onClick={()=>{!owned?setModal(true):setModal(false)}} className="buy-button">
                         Buy Now
                     </button>
