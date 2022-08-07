@@ -112,8 +112,8 @@ export default function MarketPlace() {
           <button onClick={handleApply} className='apply'>Apply Filters</button>
         </div>
         <ul className='nfts'>
-          {filteredNfts?.map((filteredNfts, index) => index >= minIndex && index < maxIndex && (
-            <li key={filteredNfts.id}><BuyCard /> <Link to={`/nft/${filteredNfts.id}`}>View</Link></li>
+          {filteredNfts?.map((filteredNfts,index)=> index >= minIndex && index < maxIndex && (
+            <li key={filteredNfts.id}><BuyCard id={filteredNfts.id}></BuyCard></li>
           ))
           }
         </ul>
