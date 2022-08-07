@@ -80,24 +80,25 @@
     margin-left: 10px;
     margin-bottom: 15px;
 }
-.nft-info>.price{
+.nft-info>.prices>.price{
+    padding-left: 10px;
     font-size: 18.5px;
     background-color: white;
     display: block;
-    width: 40%;
+    width: 100%;
     margin-left: 10%;
     border: 2px solid rgb(225, 225, 225);
-    border-radius: 5px 5px 0 0;
-    border-bottom: none;
+    border-radius: 5px 0px 0 5px;
+    border-right: none
 }
-.nft-info>.cprice{
+.nft-info>.prices>.cprice{
+    padding-left: 10px;
     font-size: 18.5px;
     background-color: white;
-    width: 40%;
+    width: 100%;
     margin-left: 10%;
     border: 2px solid rgb(225, 225, 225);
-    border-top: none;
-    border-radius: 0 0 5px 5px;
+    border-radius: 0 5px 5px 0;
 }
 .description-div{
     background-color: white;
@@ -161,4 +162,9 @@
     margin-top: 15px;
     display: grid;
     grid-template-columns: 33% 33% 33%;
+}
+.prices{
+    padding-left: 100px;
+    display: grid;
+    grid-template-columns: 40% 40%;
 }
