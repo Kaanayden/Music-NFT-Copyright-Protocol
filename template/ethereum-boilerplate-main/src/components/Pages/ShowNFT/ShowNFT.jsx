@@ -68,7 +68,12 @@ const ShowNFT = () => {
         const ethers = Moralis.web3Library;
         const contract = new ethers.Contract(contractAddress, abi, web3Provider);
         const blockNumber = await web3Provider.getBlockNumber();
+<<<<<<< HEAD
         let result = await contract.queryFilter("*", blockNumber - 10000, blockNumber)
+=======
+        let result = await contract.queryFilter("*", blockNumber - 15000, blockNumber)
+        console.log("result", result);
+>>>>>>> 2dceb7af550f47edbb36631b421c6406aa19c554
         let copyrightData = {}
         copyrightData.priceSet = result.filter((data) => checkType(data, "CopyrightPriceSet"));
         copyrightData.licenseBought = result.filter((data) => checkType(data, "UsageLicenseBought"));
