@@ -59,7 +59,13 @@ export default function Copyrights(props) {
 
             {menu == "all" &&
                 <div>
-                    <Copyright />
+                    {copyrightInfo.licenseSet.map((data) => {
+
+                        return (
+
+                            <Copyright data={data} key={data.logIndex} />
+                        )
+                    })}
 
                 </div>
             }

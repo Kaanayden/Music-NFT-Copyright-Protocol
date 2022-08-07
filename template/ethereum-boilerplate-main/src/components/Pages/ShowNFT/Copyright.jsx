@@ -1,7 +1,9 @@
 
 
 
-export default function Copyright() {
+export default function Copyright(props) {
+
+    const { data } = props
     return (
         <div>
 
