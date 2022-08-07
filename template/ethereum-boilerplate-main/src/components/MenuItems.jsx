@@ -1,9 +1,11 @@
 import { useLocation } from "react-router";
 import { Menu } from "antd";
 import { NavLink } from "react-router-dom";
+import { useMoralis } from "react-moralis";
 
 function MenuItems() {
   const { pathname } = useLocation();
+  const {isAuthenticated} = useMoralis();
 
   return (
     <Menu
@@ -25,6 +27,13 @@ function MenuItems() {
       <Menu.Item key="/marketplace">
         <NavLink to="/marketplace">Marketplace</NavLink>
       </Menu.Item>
+      {isAuthenticated && <Menu.Item key="/wallet">
+        <NavLink to="/wallet">MyWallet</NavLink>
+      </Menu.Item>}
+      <Menu.Item key="/marketplace">
+        <NavLink to="/marketplace">Marketplace</NavLink>
+      </Menu.Item>
+      
     </Menu>
   );
 }

@@ -25,6 +25,8 @@ import Text from "antd/lib/typography/Text";
 import MenuItems from "./components/MenuItems";
 import Test from "components/Test";
 import MintNFT from "components/MintNFT";
+import MyWallet from "components/Pages/MyWallet/MyWallet";
+
 const { Header, Footer } = Layout;
 
 const styles = {
@@ -90,6 +92,9 @@ const App = () => {
             
             <Route path="/marketplace">
               <MarketPlace />
+            </Route>
+            <Route path="/wallet">
+              <MyWallet />
             </Route>
             <Route path="/test">
               <Test />
