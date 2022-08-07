@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BuyCard from 'components/NFTCards/BuyCard/BuyCard';
+import SellCard from 'components/NFTCards/SellCard/SellCard';
 import "./MarketPlace.css";
 
 const { Content, Sider } = Layout;
@@ -24,20 +25,21 @@ export default function MarketPlace() {
 
   const Web3Api = useMoralisWeb3Api();
   const { switchNetwork, chainId, chain, account } = useChain();
+
   const fetchAllTokenIds = async () => {
     const options = {
       address: contractAddress,
       chain: chainId,
-      limit: NFTS_PER_PAGE,
-      offset: 0,
-      //offset: page * NFTS_PER_PAGE
     };
     const NFTs = await Web3Api.token.getAllTokenIds(options);
+    setAllNfts(NFTs.result);
     console.log(NFTs);
   }
 
+  
 
-  const pageSize = 6;
+
+  const pageSize = NFTS_PER_PAGE;
   const [checkedList, setCheckedList] = useState();
   const [indeterminate, setIndeterminate] = useState(true);
   const [checkAll, setCheckAll] = useState(false);
@@ -68,32 +70,16 @@ export default function MarketPlace() {
   }
 
   const filterNfts = () => {
-    let res = allNfts;
-    res = res.filter(item => {
-      for (var key in checkedList) {
-        return (item[checkedList[key]].includes("your"))
-      }
-    });
-    setFilteredNfts(res.length ? res : allNfts);
+    setFilteredNfts(allNfts)
   }
 
   const handleApply = () => {
     setCurrent(1)
     onPage(1)
+    fetchAllTokenIds();
     filterNfts()
   }
 
-  useEffect(() => {
-    axios
-      .get('https://fakestoreapi.com/products')
-      .then((res) => {
-        // console.log(res);
-        setAllNfts(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [])
 
   return (
     <div className='outer'>
@@ -104,7 +90,6 @@ export default function MarketPlace() {
           <Checkbox indeterminate={indeterminate} onChange={onCheckAllChange} checked={checkAll}>
             Check all
           </Checkbox>
-          <button onClick={fetchAllTokenIds}>a</button>
           <br />
           <br />
           <CheckboxGroup className='filter' options={plainOptions} value={checkedList} onChange={onCheck} />
@@ -112,8 +97,8 @@ export default function MarketPlace() {
           <button onClick={handleApply} className='apply'>Apply Filters</button>
         </div>
         <ul className='nfts'>
-          {filteredNfts?.map((filteredNfts,index)=> index >= minIndex && index < maxIndex && (
-            <li key={filteredNfts.id}><BuyCard id={filteredNfts.id}></BuyCard></li>
+          {filteredNfts?.map((nft,index)=> index >= minIndex && index < maxIndex && (
+            <li key={nft.token_id}><BuyCard id={nft.token_id}></BuyCard></li>
           ))
           }
         </ul>

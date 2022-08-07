@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { LoadingOutlined } from '@ant-design/icons';
 import { Skeleton, Modal, Spin, Result } from "antd";
+import { Link } from 'react-router-dom';
+import { useMoralisWeb3Api, useChain, useMoralis,} from "react-moralis";
+import contracts from '../../../contracts/contracts.json';
+import getIPFSLink from 'scripts/getIPFSLink';
+const contractAddress = contracts.mumbai;
 import "./SellCard.css";
 
 const antIcon = (
@@ -12,61 +17,95 @@ const antIcon = (
     />
   );
 
-const SellCard = (nft)=>{
+const SellCard = ({id})=>{
+
+    const { Moralis } = useMoralis();
+    const Web3Api = useMoralisWeb3Api();
+    const { switchNetwork, chainId, chain, account } = useChain();
     
     const [loading, setLoading] = useState(true);
     const [showModal, setModal] = useState(false);
     const [verify, setVerify] = useState(false);
-    const [selled, setSelled] = useState(false);
+    const [owned, setOwned] = useState(false);
+    const [nft, setNft] = useState();
 
-    const onSell = ()=>{
-        setSelled(true)
+    const fetchTokenIdMetadata = async () => {
+        const options = {
+            address: contractAddress,
+            token_id: id,
+            chain: chainId,
+        };
+
+        const tokenIdMetadata = await Web3Api.token.getTokenIdMetadata(options);
+        tokenIdMetadata.json = JSON.parse(tokenIdMetadata.metadata);
+        console.log("metadata", tokenIdMetadata);
+        setNft(tokenIdMetadata);
+    }
+
+    const onSellNft = ()=>{
         setTimeout(()=>{
-            setLoading(false)
             setVerify(true)
-            setLoading(false)
             setTimeout(()=>{
                 setModal(false)
             },1500)
         },1000)
     }
+    const onSetC = ()=>{
+
+    }
     
     useEffect(async()=>{
+        await fetchTokenIdMetadata();
         setTimeout(()=>{
             setLoading(false)
         },1000)
-    })
-  
-    return(
+    },[])
+    
+    return nft?(
     <>
         <div className="card-container">
             <Skeleton loading={loading} active paragraph={{rows: 8}}>
                 <div className="card-outer">
-                    <button onClick={()=>{!selled?setModal(true):setModal(false)}} className="sell-button">
-                        Sell Now
+                    <Link to={`/nft/${id}`}>
+                        <div className="card-image">
+                        <img src={getIPFSLink(nft.json.image)} />
+                        </div>
+                    </Link>
+                    <div className="card-info">
+                        <p className="card-price">Price:</p>
+                        <p className="card-cprice">Copyright Price:</p>
+                        <p className="card-name">{nft.json.name}</p>
+                    </div>
+                    <button onClick={()=>{setModal(true)}} className="sell-button">
+                        Sell Copyright / NFT
                     </button>
                 </div>
             </Skeleton>
         </div>
-        <Modal title="NFT Name"
+        <Modal title={nft.name}
              visible={showModal}
+             width={800}
             onCancel={()=>{setModal(false)}}
-            footer={[<button onClick={onSell} className="sell-sell" disabled={selled}>{selled?<Spin indicator={antIcon} />:"Sell"}</button>]}>
+            footer={[<button onClick={onSellNft} className="sell-sell" >Sell</button>,
+                    <button onClick={onSetC} className="sell-sell" >Set Copyright Price</button>]}>
             {verify?
                 <Result
                     status="success"
-                    title="Successfully Selled NFT Name"
-                    subTitle="Order number: Token ID"
+                    title={"Successfully Selled "+nft.json.name}
+                    subTitle={"Token ID: " +nft.token_id}
                 />:
-                <>
-                <p>Owner Adress</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                </>
+                <div className="sell-modal">
+                    <img className="modal-image" src={getIPFSLink(nft.json.image)} />
+                    <p>Owner Adress: {nft.owner_of}</p>
+                    <p>Token ID: {nft.token_id}</p>
+                    <p>Price: </p>
+                    <p>Copyright Price: </p>
+                    <p>Copyrights</p>
+                </div>
             }  
         </Modal>
     </>
-    )
+    ):null
 }
 
 export default SellCard;
