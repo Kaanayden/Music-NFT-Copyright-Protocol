@@ -150,6 +150,7 @@ const ShowNFT = () => {
                                 Description
                                 <p className='description'>{nft.json.description}</p>
                             </div>
+
                             {!isOwner && <button onClick={onBuy} className='nft-buy'>Buy</button>}
                             {isOwner && <button onClick={onSell} >Sell</button>}
                             {isOwner && <button onClick={onSell} >Set Copyright Price</button>}
