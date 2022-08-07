@@ -36,7 +36,6 @@ export default function MarketPlace() {
     const NFTs = await Web3Api.token.getAllTokenIds(options);
     setAllNfts(NFTs.result);
     console.log(NFTs);
-    setFilteredNfts(NFTs.result)
   }
 
 
@@ -72,42 +71,25 @@ export default function MarketPlace() {
     console.log(minIndex + " " + maxIndex);
   }
 
-  const filterNfts = () => {
-
-  }
-
-  const handleApply = async () => {
+  useEffect(async()=>{
     setCurrent(1)
     onPage(1)
     await fetchAllTokenIds();
-  }
+  },[])
 
 
   return (
-    <div className='outer'>
-
-
-      <div className='container'>
-        <div className="filters">
-          <Checkbox indeterminate={indeterminate} onChange={onCheckAllChange} checked={checkAll}>
-            Check all
-          </Checkbox>
-          <br />
-          <br />
-          <CheckboxGroup className='filter' options={plainOptions} value={checkedList} onChange={onCheck} />
-          <br />
-          <button onClick={handleApply} className='apply'>Apply Filters</button>
-        </div>
+    <div className='out'>
+      <div className='contain'>
         <ul className='nfts'>
-          {filteredNfts?.map((nft, index) => index >= minIndex && index < maxIndex && (
+          {allNfts?.map((nft, index) => index >= minIndex && index < maxIndex && (
             <li key={nft.token_id}><BuyCard id={nft.token_id}></BuyCard></li>
-          ))
-          }
+          ))}
         </ul>
 
       </div>
       <Pagination className='pagination'
-        total={filteredNfts ? filteredNfts.length : 100}
+        total={allNfts ? allNfts.length : 100}
         showSizeChanger={false}
         showTotal={(total) => `Total ${total} items`}
         defaultPageSize={pageSize}

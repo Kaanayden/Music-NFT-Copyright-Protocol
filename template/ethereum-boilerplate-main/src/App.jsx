@@ -7,7 +7,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import Account from "components/Account/Account";
-import Chains from "components/Chains";
+import Chains from "components/Chains/Chains";
 
 
 
@@ -94,7 +94,7 @@ const App = () => {
             <Route path="/marketplace">
               <MarketPlace />
             </Route>
-            <Route path="/wallet">
+            <Route path="/mynfts">
               <MyWallet />
             </Route>
             <Route path="/test">
@@ -120,25 +120,13 @@ const App = () => {
       </Router>
       <Footer style={{ textAlign: "center" }}>
         <Text style={{ display: "block" }}>
-          ⭐️ Please star this{" "}
-          <a
-            href="https://github.com/ethereum-boilerplate/ethereum-boilerplate/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            boilerplate
-          </a>
-          , every star makes us very happy!
-        </Text>
-
-        <Text style={{ display: "block" }}>
           🙋 You have questions? Ask them on the {""}
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://forum.moralis.io/t/ethereum-boilerplate-questions/3951/29"
+            href="https://github.com/Kaanayden/Music-NFT-Copyright-Protocol/issues"
           >
-            Moralis forum
+            GitHub
           </a>
         </Text>
 
@@ -147,9 +135,9 @@ const App = () => {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://moralis.io?utm_source=boilerplatehosted&utm_medium=todo&utm_campaign=ethereum-boilerplat"
+            href="https://github.com/Kaanayden/Music-NFT-Copyright-Protocol/blob/main/README.md"
           >
-            Moralis
+            MNCP
           </a>
         </Text>
       </Footer>

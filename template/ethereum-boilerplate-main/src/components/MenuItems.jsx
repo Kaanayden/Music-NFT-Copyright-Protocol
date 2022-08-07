@@ -27,8 +27,8 @@ function MenuItems() {
       <Menu.Item key="/marketplace">
         <NavLink to="/marketplace">Marketplace</NavLink>
       </Menu.Item>
-      {isAuthenticated && <Menu.Item key="/wallet">
-        <NavLink to="/wallet">MyWallet</NavLink>
+      {isAuthenticated && <Menu.Item key="/mynfts">
+        <NavLink to="/mynfts">My NFT's</NavLink>
       </Menu.Item>}
 
       

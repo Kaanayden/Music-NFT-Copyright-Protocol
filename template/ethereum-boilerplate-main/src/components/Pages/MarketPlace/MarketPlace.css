@@ -1,42 +1,18 @@
-.outer{
-    margin-top: 10px;
+.out{
+    margin-top: -50px;
     align-items: center!important;
     justify-content: center!important;
     width: 100%!important;
-    height: 500px;
+    height: 560px!important;
+    margin-left: 20px;
+
 }
-.outer .container{
-    
+.out .contain{
+    margin-top: 10px;
     display: grid!important;
     gap: 10px;
-    height: 500px;
-    grid-template-columns: 20% 80%!important;
-}
-.filters{
-    border-radius: 10px 0 0 10px;
-    padding: 10px 10px;
-    height: 500px;
-    border: 2px solid rgb(225,225,225);
-    background-color: rgb(225, 225, 225);
-    box-shadow: 0 0 5px 2px rgb(230, 230, 230) ;
-    margin-left: 10px;
-    overflow-x: hidden;
-}
-.filter{
-    display: grid;
-    grid-template-columns: 100%;
-}
-.apply{
-    border: 1px solid gray;
-    border-radius: 5px;
-    width: 100px;
-    margin-left: 50%;
-    margin-top: 300px;
-    margin-bottom: 10px;
-    transform: translate(-50%);
-}
-.apply:hover{
-    box-shadow: 0 0 5px 2px gray ;
+    height: 540px!important;
+    grid-template-columns: 100%!important;
 }
 .nfts{
     margin-top: 10px;
@@ -46,12 +22,14 @@
     border-radius: 0 10px 10px 0;
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
+    justify-items: center;
     row-gap: 20px;
     width: 99.5%;
-    height: 500px;
+    height: 540px;
     overflow-y: scroll;
 }
 
 .pagination{
-    transform: translate(45%,10px);
+    transform: translate(42.5%,10px);
+    margin-bottom: 100px;
 }

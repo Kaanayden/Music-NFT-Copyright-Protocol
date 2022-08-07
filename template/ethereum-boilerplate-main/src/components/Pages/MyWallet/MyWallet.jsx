@@ -4,7 +4,7 @@ import contracts from '../../../contracts/contracts.json'
 const contractAddress = contracts.mumbai;
 import abi from '../../../contracts/contractAbi'
 import SellCard from "components/NFTCards/SellCard/SellCard";
-import { Pagination } from "antd";
+import { Pagination, Alert } from "antd";
 import "./MyWallet.css";
 
 
@@ -13,7 +13,7 @@ export default function MyWallet(){
     const Web3Api = useMoralisWeb3Api();
     const { switchNetwork, chainId, chain, account } = useChain();
     const [myNFTs, setNFTs] = useState([]);
-    const pageSize = 2;
+    const pageSize = 12;
     const [totalPage, setPages] = useState(0);
     const [currentPage, setCurrent] = useState(1);
     const [minIndex, setMin] = useState(0);
@@ -58,6 +58,10 @@ return(
                 onChange={onPage}
             />
         </div>
-    </>
-    :<p>You do not have any NFT</p>
+    </>:
+    <Alert 
+        message="*You do not have any NFT"
+        description="You must buy a NFT or mint a new one to see your first NFT"
+        type="warning"
+    />
 )}

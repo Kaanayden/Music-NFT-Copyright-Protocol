@@ -1,5 +1,8 @@
 .my-outer{
     width: 100%;
+    margin-top: -50px;
+    overflow: hidden;
+    height: 545px;
 }
 .my-nfts{
     padding: 10px;
@@ -9,13 +12,14 @@
     border-radius: 10px;
     overflow-y: hidden;
     overflow-x: hidden;
+    justify-items: center;
     height: 500px;
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
-    gap: 20px;
+    gap: 10px;
     overflow-y: scroll;
 }
 .my-outer .pagination{
-    margin-left: -10%;
+    margin-left: -5%;
     
 }

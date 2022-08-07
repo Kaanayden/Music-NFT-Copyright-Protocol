@@ -31,10 +31,10 @@ export default function Home() {
           <p>Sponsors</p>
           <div className="border"></div>
           <div className="inner">
-            <img src={zora} />
-            <img src={polygon} />
-            <img src={lit} />
-            <img src={nft} />
+            <a href="https://zora.co/"><img src={zora} /></a>
+            <a href="https://polygon.technology/"><img src={polygon} /></a>
+            <a href="https://litprotocol.com/"><img src={lit} /></a>
+            <a href="https://nft.storage/"><img src={nft} /></a>
           </div>
         </div>
         <p>Lorem ipsum dolor sit amet, esse impetus argumentum no vix, exerci nostrum pri an. Ea malorum omittantur his, bonorum epicuri neglegentur mea ea, te vis sale primis deseruisse. Eos at summo ponderum accusata, te nec timeam delicatissimi, nam et ipsum eligendi efficiantur. Ne est audiam utamur adversarium, pri ea populo doming.Ei mel inani integre maiestatis. At pro tota scaevola vulputate, te omnes propriae eam. Te utroque commune has. Periculis democritum quo ut, unum postea laoreet at mel.
@@ -46,16 +46,6 @@ export default function Home() {
         <br />
         <p>Vim at quot lucilius, ex eum iusto voluptatum. Quot complectitur vel ut, mei te eros nonumes inciderint. Cu eam constituto intellegebat, ex iuvaret eleifend pericula nec, esse ignota noluisse eu pro. Commodo consectetuer ius ne. Ut purto nobis verterem sea.Ei mel inani integre maiestatis. At pro tota scaevola vulputate, te omnes propriae eam. Te utroque commune has. Periculis democritum quo ut, unum postea laoreet at mel.
         </p>
-      </div>
-      <div className="contact">
-        <div className="kaan">
-          <img src={kaan} />
-          <p>Kaan Aydeniz <br /> Linkedin
-          </p>
-        </div>
-        <div className="muhittin">
-          <img src={muhi} />
-        </div>
       </div>
     </div>
   );
