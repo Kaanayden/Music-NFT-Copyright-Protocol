@@ -43,7 +43,15 @@ const BuyCard = ({nft,id})=>{
         <div className="card-container">
             <Skeleton loading={loading} active paragraph={{rows: 8}}>
                 <div className="card-outer">
-                    <Link to={`/nft/${id}`}>View</Link>
+                    <Link to={`/nft/${id}`}>
+                        <div className="card-image">
+
+                        </div>
+                    </Link>
+                    <div className="card-info">
+                        <p className="card-price">Price</p>
+                        <p className="card-cprice">Copyright Price</p>
+                    </div>
                     <button onClick={()=>{!owned?setModal(true):setModal(false)}} className="buy-button">
                         Buy Now
                     </button>
