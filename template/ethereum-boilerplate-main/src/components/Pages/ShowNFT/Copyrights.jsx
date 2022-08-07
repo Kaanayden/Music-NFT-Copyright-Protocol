@@ -11,6 +11,7 @@ import contracts from '../../../contracts/contracts.json'
 const contractAddress = contracts.mumbai;
 import abi from '../../../contracts/contractAbi'
 import getIPFSLink from 'scripts/getIPFSLink';
+import Copyright from './Copyright';
 
 
 export default function Copyrights(props) {
@@ -58,7 +59,7 @@ export default function Copyrights(props) {
 
             {menu == "all" &&
                 <div>
-
+                    <Copyright />
 
                 </div>
             }

@@ -144,8 +144,8 @@ const ShowNFT = () => {
                             <p className='name'>Name: {nft.json.name}</p>
                             {isOwner && <p className='owner'>Owned by: You</p>}
                             {!isOwner && <p className='owner'>Owned by: {nft.owner_of}</p>}
-                            <p className="price">Price: {egNFT.price} {chain.nativeCurrency.symbol}</p>
-                            <p className="price">Copyright Price: {egNFT.price} {chain.nativeCurrency.symbol}</p>
+                            <p className="price">Price: {egNFT.price} {chain?.nativeCurrency.symbol}</p>
+                            <p className="price">Copyright Price: {egNFT.price} {chain?.nativeCurrency.symbol}</p>
                             <p className='token-id'>Token ID: {nft.token_id}</p>
                             <p className="contract-id">Contract Address: {nft.token_address}ETH</p>
                             <div className='description-div'>
