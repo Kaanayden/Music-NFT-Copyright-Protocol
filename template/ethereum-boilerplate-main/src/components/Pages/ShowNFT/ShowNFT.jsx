@@ -92,11 +92,18 @@ const ShowNFT = () => {
         const ethers = Moralis.web3Library;
         const contract = new ethers.Contract(contractAddress, abi, web3Provider);
         const blockNumber = await web3Provider.getBlockNumber();
-        let result = await contract.queryFilter("*", blockNumber - 10000, blockNumber)
+        let result = await contract.queryFilter("*", blockNumber - 20000, blockNumber)
+        console.log("result", result);
         let copyrightData = {}
         copyrightData.priceSet = result.filter((data) => checkType(data, "CopyrightPriceSet"));
         copyrightData.licenseBought = result.filter((data) => checkType(data, "UsageLicenseBought"));
         copyrightData.licenseSet = result.filter((data) => checkType(data, "UsageLicenseDataSet"));
+        if (copyrightData.priceSet.length > 0) {
+            copyrightData.price = copyrightData.priceSet[copyrightData.priceSet.length - 1].args.newPrice.toNumber();
+        } else {
+            copyrightData.price = 0;
+        }
+
         setCopyright(copyrightData)
         ethers.BigNumber
     }
@@ -118,7 +125,7 @@ const ShowNFT = () => {
 
     }
 
-
+    console.log(chain)
     return (
         <div>
             <button onClick={openPage}>a</button>
@@ -129,7 +136,7 @@ const ShowNFT = () => {
                         <div className='nft-image'>
                             <img src={getIPFSLink(nft.json.image)} />
 
-                            <audio controls autoPlay>
+                            <audio controls>
                                 <source src={getIPFSLink(nft.json.audio)} type="audio/mpeg" />
                             </audio>
                         </div>
@@ -137,8 +144,8 @@ const ShowNFT = () => {
                             <p className='name'>Name: {nft.json.name}</p>
                             {isOwner && <p className='owner'>Owned by: You</p>}
                             {!isOwner && <p className='owner'>Owned by: {nft.owner_of}</p>}
-                            <p className="price">Price: {egNFT.price}ETH</p>
-                            <p className="price">Copyright Price: {egNFT.price}ETH</p>
+                            <p className="price">Price: {egNFT.price} {chain.nativeCurrency.symbol}</p>
+                            <p className="price">Copyright Price: {egNFT.price} {chain.nativeCurrency.symbol}</p>
                             <p className='token-id'>Token ID: {nft.token_id}</p>
                             <p className="contract-id">Contract Address: {nft.token_address}ETH</p>
                             <div className='description-div'>
