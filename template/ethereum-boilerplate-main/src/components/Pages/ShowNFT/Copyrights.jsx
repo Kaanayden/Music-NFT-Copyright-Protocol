@@ -35,7 +35,7 @@ export default function Copyrights(props) {
 
 
     const checkFreeLicense = async () => {
-        const web3Provider = await Moralis.enableWeb3();
+        const web3Provider = await Moralis.web3
         const ethers = Moralis.web3Library;
         const contract = new ethers.Contract(contractAddress, abi, web3Provider);
         let array = []
