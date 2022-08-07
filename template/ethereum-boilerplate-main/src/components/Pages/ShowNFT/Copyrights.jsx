@@ -12,6 +12,7 @@ const contractAddress = contracts.mumbai;
 import abi from '../../../contracts/contractAbi'
 import getIPFSLink from 'scripts/getIPFSLink';
 import Copyright from './Copyright';
+import SetCopyright from './SetCopyright';
 
 const { Meta } = Card;
 
@@ -25,6 +26,7 @@ export default function Copyrights(props) {
     const { nft, copyrightInfo } = props;
 
     const [menu, setMenu] = useState("all");
+    const [videoRangeVisible, setVideoRangeVisible] = useState(false)
 
     const handleSelect = (value) => {
         setMenu(value.key);
@@ -33,6 +35,8 @@ export default function Copyrights(props) {
         }
     }
 
+
+    
 
     const checkFreeLicense = async () => {
         const web3Provider = await Moralis.web3
@@ -44,7 +48,7 @@ export default function Copyrights(props) {
         console.log("olay2")
         console.log("copy", copyrights)
         for (let i = 0; i < copyrightInfo.licenseBought.length; i++) {
-            if (copyrights[copyrightInfo.licenseBought[i].args.copyrightId].isDataSet != false) {
+            if (copyrights[copyrightInfo.licenseBought[i].args.copyrightId].isDataSet == false) {
                 array.push(copyrightInfo.licenseBought[i])
             }
         }
@@ -59,6 +63,27 @@ export default function Copyrights(props) {
         isOwner = (nft.owner_of.toLowerCase() == account.toLowerCase())
 
     }
+
+    const buyUsage = async () => {
+        const web3Provider = await Moralis.web3
+        const ethers = Moralis.web3Library;
+        const signer = web3Provider.getSigner();
+        const contract = new ethers.Contract(contractAddress, abi, signer);
+        let nfts = await contract.musicNFTs(nft.token_id);
+        let price = nfts.toNumber();
+
+        console.log("test", price)
+        let copyrights = await contract.buyUsageLicense(nft.token_id, { value: price });
+        await checkFreeLicense()
+        console.log(copyrights)
+    }
+
+
+    const handleSetFinish = async () => {
+
+        await checkFreeLicense()
+    }
+
 
     return (
         <div>
@@ -113,13 +138,14 @@ export default function Copyrights(props) {
             }
             {menu == "userfree" &&
                 <div>
-                    <Button type="primary" shape="round" icon={<ShoppingCartOutlined />} size="large" >Buy Usage License</Button>
+                    <Button type="primary" shape="round" icon={<ShoppingCartOutlined />} size="large" onClick={buyUsage}>Buy Usage License</Button>
+
                     {free.map((data) => {
                         if (data.args.buyer.toLowerCase() == account.toLowerCase()) {
 
                             return (
 
-                                "bb"
+                                <SetCopyright data={data} onFinish={handleSetFinish} />
                             )
                         } else {
                             return null;
@@ -128,7 +154,8 @@ export default function Copyrights(props) {
                     })}
                 </div>
             }
-            {menu == "private" &&
+            {
+                menu == "private" &&
                 <div>
                     <Alert message="You need to own NFT or buy usage copyright license to access private files." type="warning" />
 
