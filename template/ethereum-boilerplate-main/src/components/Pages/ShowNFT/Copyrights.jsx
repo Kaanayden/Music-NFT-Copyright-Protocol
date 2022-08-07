@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Collapse, Menu, Card, Badge, Alert, Button } from 'antd';
+import { Collapse, Menu, Card, Badge, Alert, Button, Upload, Input } from 'antd';
 const { Panel } = Collapse;
 
-import { CopyrightOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { CopyrightOutlined, ShoppingCartOutlined, UploadOutlined } from '@ant-design/icons';
 import { BsPersonCheckFill, BsPersonPlusFill } from "react-icons/bs";
 import { GrDocumentLocked } from "react-icons/gr"
 
@@ -13,6 +13,7 @@ import abi from '../../../contracts/contractAbi'
 import getIPFSLink from 'scripts/getIPFSLink';
 import Copyright from './Copyright';
 import SetCopyright from './SetCopyright';
+import LitJsSdk from 'lit-js-sdk'
 
 const { Meta } = Card;
 
@@ -32,6 +33,8 @@ export default function Copyrights(props) {
     const [menu, setMenu] = useState("all");
     const [videoRangeVisible, setVideoRangeVisible] = useState(false)
     const [isNftOwner, setIsNftOwner] = useState(false);
+    const [data, setData] = useState();
+
 
     const handleSelect = (value) => {
         setMenu(value.key);
@@ -112,6 +115,186 @@ export default function Copyrights(props) {
     }
 
 
+    const handleUserUpload = async (info) => {
+        let file = info.file.originFileObj;
+        console.log("file", file)
+
+        const client = new LitJsSdk.LitNodeClient()
+        await client.connect()
+        console.log(client);
+        const chain = "mumbai";
+        const accessControlConditions = [
+            {
+                contractAddress: contractAddress,
+                functionName: "checkLicenseWithAddress",
+                functionParams: [nft.token_id, ":userAddress"],
+                functionAbi: {
+                    type: "function",
+                    stateMutability: "view",
+                    outputs: [
+                        {
+                            type: "bool",
+                            name: "",
+                            internalType: "bool",
+                        },
+                    ],
+                    name: "checkLicenseWithAddress",
+                    inputs: [
+                        {
+                            type: "uint",
+                            name: "tokenId",
+                            internalType: "uint",
+                        },
+                        {
+                            type: "address",
+                            name: "_address",
+                            internalType: "address",
+                        },
+                    ],
+                },
+                chain,
+                returnValueTest: {
+                    key: "",
+                    comparator: "==",
+                    value: "true",
+                },
+            },
+        ]
+
+        const authSig = await LitJsSdk.checkAndSignAuthMessage({ chain: 'mumbai' })
+        const { encryptedString, symmetricKey } = await LitJsSdk.encryptString(
+            "this is a secret message"
+        );
+
+        const encryptedSymmetricKey = await window.litNodeClient.saveEncryptionKey({
+            accessControlConditions,
+            symmetricKey,
+            authSig,
+            chain,
+        });
+
+    }
+
+    const handleOwnerUpload = (info) => {
+
+    }
+
+    function handleInput(e) {
+        setData(e.target.value);
+        console.log(data)
+    }
+
+    const handleUserUpload = async (e) => {
+        let file = e.file.originFileObj
+        console.log(file);
+        setUser(file);
+    
+        const client = new LitJsSdk.LitNodeClient()
+        await client.connect()
+        console.log(client);
+        const chain = "mumbai";
+    
+        const options = {
+          address: contractAddress,
+          chain: chainId,
+        };
+        const NFTs = await Web3Api.token.getAllTokenIds(options);
+        const id = NFTs.total;
+        /*
+            const accessControlConditions = [
+              {
+                contractAddress: contractAddress,
+                functionName: "checkLicenseWithAddress",
+                functionParams: [id, ":userAddress"],
+                functionAbi: {
+                  type: "function",
+                  stateMutability: "view",
+                  outputs: [
+                    {
+                      type: "bool",
+                      name: "",
+                      internalType: "bool",
+                    },
+                  ],
+                  name: "checkLicenseWithAddress",
+                  inputs: [
+                    {
+                      type: "uint",
+                      name: "tokenId",
+                      internalType: "uint",
+                    },
+                    {
+                      type: "address",
+                      name: "_address",
+                      internalType: "address",
+                    },
+                  ],
+                },
+                chain,
+                returnValueTest: {
+                  key: "",
+                  comparator: "==",
+                  value: "true",
+                },
+              },
+            ]
+        */
+    
+        const accessControlConditions = [
+          {
+            contractAddress: '',
+            standardContractType: '',
+            chain: 'mumbai',
+            method: 'eth_getBalance',
+            parameters: [':userAddress', 'latest'],
+            returnValueTest: {
+              comparator: '>=',
+              value: '1000000000000',  // 0.000001 ETH
+            },
+          },
+        ]
+    
+        const authSig = await LitJsSdk.checkAndSignAuthMessage({ chain: 'mumbai' })
+        const { encryptedString, symmetricKey } = await LitJsSdk.encryptString(
+          "this is a secret message"
+        );
+    
+        let encryptedSymmetricKey = await client.saveEncryptionKey({
+          accessControlConditions,
+          symmetricKey,
+          authSig,
+          chain,
+        });
+    
+        encryptedSymmetricKey = LitJsSdk.uint8arrayToString(encryptedSymmetricKey, "base16")
+    
+        let encrypted = {
+          encryptedString: blobToBase64(encryptedString)
+          , encryptedSymmetricKey: encryptedSymmetricKey
+        }
+        console.log("encryiption", encrypted);
+    
+    
+        const symmetricKeyy = await client.getEncryptionKey({
+          accessControlConditions,
+          toDecrypt: encryptedSymmetricKey,
+          chain,
+          authSig
+        })
+    
+        const decryptedString = await LitJsSdk.decryptString(
+          encryptedString,
+          symmetricKeyy
+        );
+        console.log("decrypt", decryptedString)
+        setUserUploading(true);
+        let result = await uploadData(JSON.stringify(encrypted));
+        console.log(result)
+        setUserUploading(false);
+        setUserIpfs(result);
+    
+      }
+
     return (
         <div>
 
@@ -188,12 +371,9 @@ export default function Copyrights(props) {
                     <Alert message="You need to own NFT or buy usage copyright license to access private files." type="warning" />
                     <Button type="primary" shape="round" icon={<ShoppingCartOutlined />} size="large" onClick={handlePrivate} disabled={!isLicenseOwner}>View Usage Paid Files</Button>
                     <Button type="primary" shape="round" icon={<ShoppingCartOutlined />} size="large" onClick={buyUsage} disabled={!isNftOwner}>View Owner Files</Button>
-                    {isOwner &&
-                        <div>
-                            <Button type="primary" danger shape="round" icon={<ShoppingCartOutlined />} size="large" onClick={handlePrivate} disabled={!isOwner}>Set Usage Paid Files</Button>
-                            <Button type="primary" danger shape="round" icon={<ShoppingCartOutlined />} size="large" onClick={buyUsage} disabled={!isOwner}>Set Owner Files</Button>
-                        </div>
-                    }
+                    {isOwner && <Input placeholder="Data(url eg.)" onChange={handleInput} />}
+                    {isOwner && <Button type="primary" danger shape="round" icon={<UploadOutlined />} size="large" >Set Usage Paid Files</Button>}
+                    {isOwner && <Button type="primary" danger shape="round" icon={<UploadOutlined />} size="large" >Set Owner Files</Button>}
                 </div>
             }
 
