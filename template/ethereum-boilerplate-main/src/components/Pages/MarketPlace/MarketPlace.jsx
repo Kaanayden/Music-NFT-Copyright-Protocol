@@ -7,13 +7,35 @@ import axios from 'axios';
 import BuyCard from 'components/NFTCards/BuyCard/BuyCard';
 import "./MarketPlace.css";
 
-const {  Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 const CheckboxGroup = Checkbox.Group;
 const plainOptions = ['description', 'On auction', 'Orange'];
 
+import { useMoralisWeb3Api, useChain } from "react-moralis";
+import contracts from '../../../contracts/contracts.json'
+const contractAddress = contracts.mumbai;
+import abi from '../../../contracts/contractAbi'
 
+const NFTS_PER_PAGE = 20;
 
 export default function MarketPlace() {
+
+
+
+  const Web3Api = useMoralisWeb3Api();
+  const { switchNetwork, chainId, chain, account } = useChain();
+  const fetchAllTokenIds = async () => {
+    const options = {
+      address: contractAddress,
+      chain: chainId,
+      limit: NFTS_PER_PAGE,
+      offset: 0,
+      //offset: page * NFTS_PER_PAGE
+    };
+    const NFTs = await Web3Api.token.getAllTokenIds(options);
+    console.log(NFTs);
+  }
+
 
   const pageSize = 6;
   const [checkedList, setCheckedList] = useState();
@@ -38,30 +60,30 @@ export default function MarketPlace() {
     setCheckAll(e.target.checked);
   };
 
-  const onPage = (page)=>{
+  const onPage = (page) => {
     setCurrent(page);
-    setMin((page-1)*pageSize);
-    setMax(page*pageSize);
+    setMin((page - 1) * pageSize);
+    setMax(page * pageSize);
     console.log(minIndex + " " + maxIndex);
   }
 
-  const filterNfts = ()=>{
-    let res=allNfts;
+  const filterNfts = () => {
+    let res = allNfts;
     res = res.filter(item => {
       for (var key in checkedList) {
-        return(item[checkedList[key]].includes("your"))
+        return (item[checkedList[key]].includes("your"))
       }
     });
-    setFilteredNfts(res.length?res:allNfts);
+    setFilteredNfts(res.length ? res : allNfts);
   }
 
-  const handleApply = ()=>{
+  const handleApply = () => {
     setCurrent(1)
     onPage(1)
     filterNfts()
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     axios
       .get('https://fakestoreapi.com/products')
       .then((res) => {
@@ -75,33 +97,36 @@ export default function MarketPlace() {
 
   return (
     <div className='outer'>
+
+
       <div className='container'>
         <div className="filters">
           <Checkbox indeterminate={indeterminate} onChange={onCheckAllChange} checked={checkAll}>
             Check all
           </Checkbox>
-          <br/>
-          <br/>
+          <button onClick={fetchAllTokenIds}>a</button>
+          <br />
+          <br />
           <CheckboxGroup className='filter' options={plainOptions} value={checkedList} onChange={onCheck} />
-          <br/>
+          <br />
           <button onClick={handleApply} className='apply'>Apply Filters</button>
         </div>
         <ul className='nfts'>
-          {filteredNfts?.map((filteredNfts,index)=> index >= minIndex && index < maxIndex && (
-            <li key={filteredNfts.id}><BuyCard/> <Link to={`/nft/${filteredNfts.id}`}>View</Link></li>
+          {filteredNfts?.map((filteredNfts, index) => index >= minIndex && index < maxIndex && (
+            <li key={filteredNfts.id}><BuyCard /> <Link to={`/nft/${filteredNfts.id}`}>View</Link></li>
           ))
           }
         </ul>
-        
+
       </div>
       <Pagination className='pagination'
-        total={filteredNfts?filteredNfts.length:100}
+        total={filteredNfts ? filteredNfts.length : 100}
         showSizeChanger={false}
         showTotal={(total) => `Total ${total} items`}
         defaultPageSize={pageSize}
         current={currentPage}
         onChange={onPage}
       />
-    </div>
+    </div >
   );
 }

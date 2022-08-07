@@ -12,7 +12,7 @@ const { Text, Link } = Typography;
 
 export default function SelectVideoRange(props) {
 
-    //props: tokenId and moralis hooks
+    //props: tokenId and onFinish
 
     const [urlWarning, setUrlWarning] = useState();
     const [videoUrl, setVideoUrl] = useState(false);
