@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Collapse, Menu } from 'antd';
+import { Collapse, Menu, Statistic } from 'antd';
 const { Panel } = Collapse;
 
 
@@ -133,8 +133,11 @@ const ShowNFT = () => {
                             {!isOwner && <p className='owner'>  Owned by: {nft.owner_of}</p>}
                             <p className='token-id'>Token ID: {nft.token_id}</p>
                             <p className="contract-id">Contract Address: {nft.token_address}ETH</p>
-                            <p className="price">Price: xxxx {chain?.nativeCurrency.symbol}</p>
-                            <p className="cprice">Copyright Price: xxxx {chain?.nativeCurrency.symbol}</p>
+                            <div className='prices'>
+                                <p className="price"><Statistic title="NFT Price" value={112893 + " " +chain?.nativeCurrency.symbol} /></p>
+                                <p className="cprice"><Statistic title="Copyright Price" value={112893 + " " +chain?.nativeCurrency.symbol} /></p>
+                            </div>
+                           
                             <div className='description-div'>
                                 Description:
                                 <p className='description'>{nft.json.description}</p>
