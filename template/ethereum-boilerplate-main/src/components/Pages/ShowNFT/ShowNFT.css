@@ -1,30 +1,31 @@
 .nft-outer{
     border-radius: 10px;
-    display: grid;
-    grid-template-columns: 100%;
-    align-items: center;
-    justify-content: center;
+    margin-left: 50%;
+    transform: translate(-50%);
     height: auto;
     width: 100%;
 }
 .nft-container{
     border-radius: 5px;
-    border: 1px solid gray;
+    border: none;
     display: grid;
     grid-template-columns: 35% 65%;
     width: 100%;
     height: auto;
     margin-bottom: 10px;
+    padding: 10px 10px;
 }
 .nft-container *{
     border-radius: 5px;
-    background-color: white;
+    background-color: transparent;
 }
 .nft-container .nft-image{
-    border-radius: 5px 0 0 5px;
-    width: 100%;
-    height: 505px;
+    border: 5px solid white;
+    border-radius: 5px 5px 25px 25px;
+    width: 90%;
+    height: 510px;
     background-color: white;
+    box-shadow: 0 0 0 1px rgb(225, 225, 225);
 }
 .nft-image>img{
     width: 100%;
@@ -41,18 +42,82 @@
     width: 100%;;
     height: 55px;
 }
+.nft-info{
+    margin-top: 20px;
+}
+.nft-info>.name{
+    color:black;
+    font-size: 20px;
+    font-weight: 600;
+}
+.nft-info>.owner{
+    background-color: white;
+    padding-left: 10px;
+    font-size: 17px;
+    border: 2px solid rgb(225, 225, 225);
+    border-radius: 5px 5px 0 0;
+    border-bottom: none;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+.nft-info>.token-id{
+    background-color: white;
+    padding-left: 10px;
+    font-size: 17px;
+    border-radius: 0;
+    border: 2px solid rgb(225, 225, 225);
+    border-top: none;
+    border-bottom: none;
+    margin-left: 10px;
+}
+.nft-info>.contract-id{
+    background-color: white;
+    padding-left: 10px;
+    font-size: 17px;
+    border: 2px solid rgb(225, 225, 225);
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+}
+.nft-info>.price{
+    font-size: 18.5px;
+    background-color: white;
+    display: block;
+    width: 40%;
+    margin-left: 10%;
+    border: 2px solid rgb(225, 225, 225);
+    border-radius: 5px 5px 0 0;
+    border-bottom: none;
+}
+.nft-info>.cprice{
+    font-size: 18.5px;
+    background-color: white;
+    width: 40%;
+    margin-left: 10%;
+    border: 2px solid rgb(225, 225, 225);
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+}
 .description-div{
-    margin-top:100px;
+    background-color: white;
+    font-size: 17px;
+    padding: 10px;
+    margin-left: 10px;
+    margin-top:15px;
     border: 1px solid rgb(225, 225, 225);
     height: 200px;
 }
 .description-div>p{
+    font-size: 15px;
+    padding: 10px;
     overflow-y: scroll;
-    height: 100%;
+    height: 80%;
     border-radius: 0 0 5px 5px;
 }
 .nft-buy{
-    background-color: aqua;
+    font-size: 17px;
+    background-color: rgb(142, 203, 247);
     border: 1px solid gray;
     width: 85%;
     height: 40px;
@@ -60,12 +125,13 @@
     transform: translate(-50%);
 }
 .nft-buy:hover{
-    color: white;
-    background-color: rgb(3, 162, 162);
+    font-weight: 500;
+    background-color: rgb(142, 203, 247);
     box-shadow: 3px 3px 10px 5px rgb(210, 210, 210);;
 }
 .nft-sell{
-    background-color: rgb(196, 71, 40);
+    font-size: 17px;
+    background-color: rgb(146, 87, 70);
     border: 1px solid gray;
     width: 85%;
     height: 40px;
@@ -73,12 +139,13 @@
     transform: translate(-50%)
 }
 .nft-sell:hover{
-    color: white;
-    background-color: rgb(196, 71, 40);
+    font-weight: 500;
+    background-color: rgb(146, 87, 70);
     box-shadow: 3px 3px 10px 5px rgb(210, 210, 210);;
 }
 .nft-setc{
-    background-color: rgb(27, 106, 48);
+    font-size: 17px;
+    background-color: rgb(70, 111, 81);
     border: 1px solid gray;
     width: 85%;
     height: 40px;
@@ -86,12 +153,12 @@
     transform: translate(-50%)
 }
 .nft-setc:hover{
-    color: white;
-    background-color: rgb(27, 106, 48);
+    font-weight: 500;
+    background-color: rgb(70, 111, 81);
     box-shadow: 3px 3px 10px 5px rgb(210, 210, 210);;
 }
 .nft-buttons{
-    margin-top: 25px;
+    margin-top: 15px;
     display: grid;
     grid-template-columns: 33% 33% 33%;
 }

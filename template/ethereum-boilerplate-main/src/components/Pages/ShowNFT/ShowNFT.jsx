@@ -7,7 +7,6 @@ const { Panel } = Collapse;
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 import "./ShowNFT.css";
-import Aud from "../../images/coraline.mp3";
 
 import { useMoralisWeb3Api, useChain, useMoralis, useMoralisQuery } from "react-moralis";
 import contracts from '../../../contracts/contracts.json'
@@ -41,6 +40,7 @@ const ShowNFT = () => {
         console.log("hey")
 
         const tokenIdMetadata = await Web3Api.token.getTokenIdMetadata(options);
+        console.log(tokenIdMetadata)
         tokenIdMetadata.json = JSON.parse(tokenIdMetadata.metadata);
         console.log("metadata", tokenIdMetadata);
         setNft(tokenIdMetadata);
@@ -54,20 +54,6 @@ const ShowNFT = () => {
 
     console.log("nft", nft)
     console.log("copyright", copyright)
-
-
-    const egNFT = {
-        tokenid: "8932795879048732986738347289",
-        owner: "347263097hvxjbv9889w8yvnwy5n79yv",
-        contractid: "8sd678gshgndgfs8d7fyghd78shvf",
-        price: "2.1",
-        name: "bla bla bla",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        img: "https://www.qries.com/images/banner_logo.png",
-        audio: { Aud },
-        copyrights: ["jsahgjks", "ajhfjkshdk"],
-    }
-
 
 
     const onBuy = async () => {
@@ -124,13 +110,12 @@ const ShowNFT = () => {
     const openPage = async () => {
         await fetchTokenIdMetadata()
         await getEvents();
-
     }
 
     console.log(chain)
     return (
         <div>
-            <button onClick={openPage}>a</button>
+            <button style={nft?{visibility:"hidden"}:{visibility:"visible"}} onClick={openPage}>Click to See NFT</button>
             {nft &&
                 <div className='nft-outer'>
 
@@ -143,21 +128,22 @@ const ShowNFT = () => {
                             </audio>
                         </div>
                         <div className='nft-info'>
-                            <p className='name'>Name: {nft.json.name}</p>
-                            {isOwner && <p className='owner'>Owned by: You</p>}
-                            {!isOwner && <p className='owner'>Owned by: {nft.owner_of}</p>}
-                            <p className="price">Price: {egNFT.price} {chain?.nativeCurrency.symbol}</p>
-                            <p className="price">Copyright Price: {egNFT.price} {chain?.nativeCurrency.symbol}</p>
+                            <p className='name'>{nft.json.name}</p>
+                            {isOwner && <p className='owner'>  Owned by: You</p>}
+                            {!isOwner && <p className='owner'>  Owned by: {nft.owner_of}</p>}
                             <p className='token-id'>Token ID: {nft.token_id}</p>
                             <p className="contract-id">Contract Address: {nft.token_address}ETH</p>
+                            <p className="price">Price: xxxx {chain?.nativeCurrency.symbol}</p>
+                            <p className="cprice">Copyright Price: xxxx {chain?.nativeCurrency.symbol}</p>
                             <div className='description-div'>
-                                Description
+                                Description:
                                 <p className='description'>{nft.json.description}</p>
                             </div>
-
-                            {!isOwner && <button onClick={onBuy} className='nft-buy'>Buy</button>}
-                            {isOwner && <button onClick={onSell} >Sell</button>}
-                            {isOwner && <button onClick={onSell} >Set Copyright Price</button>}
+                            <div className='nft-buttons'>
+                                {!isOwner && <button onClick={onBuy} className='nft-buy'>Buy</button>}
+                                {isOwner && <button onClick={onSell} className='nft-sell'>Sell</button>}
+                                {isOwner && <button onClick={onSell} className='nft-setc'>Set Copyright Price</button>}
+                            </div>
                             {//putted be graphic
                             }
                         </div>
