@@ -49,5 +49,7 @@ Polygon used in:
 
 https://github.com/Kaanayden/Music-NFT-Copyright-Protocol/blob/main/template/ethereum-boilerplate-main/src/components/Chains/Chains.jsx
 
+https://github.com/Kaanayden/Music-NFT-Copyright-Protocol/blob/main/contracts/Contract%20Addresses.txt
+
 
 
